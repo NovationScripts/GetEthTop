@@ -50,7 +50,7 @@ At **GetEthTop**, we are not only focused on creating an engaging and profitable
 
 **Increased Transaction Activity**: The game encourages a higher volume of transactions on the Ethereum network, fostering economic activity within the blockchain.
 
-**Staking Incentives**: The increased demand for transaction processing boosts fee revenues, directly benefiting participants in Ethereum 2.0 staking.
+**Staking Incentives**: The increased demand for transaction processing boosts fee revenues, directly benefiting participants in Ethereum staking.
 
 **Innovation and dApp Development**: The development of our game demonstrates the capabilities of the Ethereum blockchain for creating complex and interactive decentralized applications, thereby contributing to the growth of the entire ecosystem.
 
