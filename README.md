@@ -6,37 +6,63 @@
 **Registration and Conditions:** 
 
 To start playing, users need to register (except for the contract owner, who is automatically registered), specifying a referrer.
+
 New players cannot be registered without a referrer, ensuring a chain of participants.
 
 **Gameplay:** 
 
 Players make deposits and complete steps (making deposits and receiving payouts 50% higher than their deposit) corresponding to their levels, with the cost of steps increasing at each subsequent level.
+
 After completing a certain number of steps, players receive a level completion reward and advance to the next level, where they can earn more.
+
 A certain percentage of each player's contribution accumulates to provide level completion rewards.
+
 Players cannot make a repeat deposit sooner than two hours after their previous deposit.
+
 The waiting time decreases by one second for each referral who completes the first level, until it reaches zero.
 
 **Fund Redistribution:**
 
 10% of each player's contribution is distributed among referrers and the contract (contract owner).
+
 Referrers earn a commission for each active referral they bring.
+
 Referrers cannot start accumulating commission unless they have completed at least 10 steps on the first level.
+
 A portion of the funds accumulates in the budget of each level, from which player rewards are paid.
+
 The contract owner receives a percentage of all transactions as a commission for managing and supporting the system.
+
 10% of the reward for completing a level (except for the first level) goes to the first level's budget.
+
 For players on each level except the first, there is an option to voluntarily contribute (any amount) to the first level's budget.
+
 When withdrawing contract earnings, the contract owner redirects 10% to the first level's budget.
+
 When referrers withdraw their earnings, 10% is redirected to the first level's budget.
 
 **Payouts and Rewards:**
 
 Players can request payouts under certain conditions, such as when their current level's budget allows it. Available payouts for players are reserved in the order of their deposits.
+
 Players can also earn additional rewards in the form of liquid tokens in another contract for completing levels.
 
 **Game Objective:** 
 
 The main goal of the game is to complete all levels, maximizing earnings and potentially achieving millionaire status (~$).
 The game offers an engaging and profitable way to earn in the cryptocurrency world, combining elements of strategy, luck, and social networking.
+
+Accelerated Progress: Designed for Rapid Completion
+"GetEthTop" is uniquely designed to enable players to progress quickly through various levels. The game focuses on providing each participant the opportunity to reach the end goal in the shortest possible time, while offering an exciting and dynamic gameplay experience.
+
+**Key Features:**
+
+**Dynamic Gameplay:** The game is specially crafted to ensure smooth and rapid advancement of players through the levels.
+
+**Optimized Reward System**: Rewards for level completion and referral programs are designed to motivate active participation and progression.
+
+**Balanced Difficulty Scale**: Each level of the game offers unique challenges and rewards, facilitating fast progress of players towards the final goal.
+This game structure aims not only to entertain but also to provide fair and equitable conditions for all participants, giving everyone a chance to achieve success in the "**GetEthTop**" game world.
 
 **Gaming and Investment: A Comparison**
 
