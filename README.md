@@ -39,6 +39,12 @@ Players can also earn additional rewards in the form of liquid tokens in another
 The main goal of the game is to complete all levels, maximizing earnings and potentially achieving millionaire status (~$).
 The game offers an engaging and profitable way to earn in the cryptocurrency world, combining elements of strategy, luck, and social networking.
 
+**Gaming and Investment: A Comparison**
+
+Traditional games often involve significant expenditure without the possibility of real profit - money spent on the game is gone forever. In contrast, our project "GetEthTop" offers a unique opportunity to not only enjoy the gaming process but also potentially earn income.
+
+Starting the game requires just an initial deposit. The core value and uniqueness of our project lie in the social interaction between players and a strategic approach to the game. Your investments in the game are not just a part of the game dynamics but also open up potential for earning, making "GetEthTop" more than just a game, but a platform for social engagement and financial growth.
+
 **Support Innovation and Creativity**
 
 We value everyone who shares our passion and vision. If you like this project and the ideas behind it, your support can be a powerful catalyst for development and realization of new creative concepts.
