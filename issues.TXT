@@ -2,5 +2,5 @@
 2. Code optimization and improvement
 3. Gas optimization
 4. SafeMath
-5. Reentrancy protection
+5. Reentrancy protection, security
 
