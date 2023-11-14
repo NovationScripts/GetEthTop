@@ -24,7 +24,7 @@ contract GetEthTop {
     players[owner].referrer = address(0);
     }
 
-    uint256[] LEVEL_STEPS = [30, 15, 4, 4, 5, 4, 4, 5, 4, 3, 5]; // Steps required for each level
+    uint256[] LEVEL_STEPS = [30, 15, 4, 4, 4, 3, 3, 4, 3, 2, 5]; // Steps required for each level
 
     // Step cost on each level in ether
     uint256[] public STEP_COSTS = [
