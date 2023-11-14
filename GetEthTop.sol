@@ -38,7 +38,7 @@ contract GetEthTop {
     20 ether,    // Cost of a step on level 8
     50 ether,    // Cost of a step on level 9
     100 ether,   // Cost of a step on level 10
-    150 ether,   // Cost of a step on level 11
+    150 ether   // Cost of a step on level 11
     ];
 	
 	
