@@ -12,12 +12,14 @@ contract GetEthTop {
    // Contract state variables
    uint256 public contractEarnings; // Total earnings of the contract
    address public owner; // Owner of the contract
+   address public externalContractAddress; // External Contract Address
    uint256 public totalFirstDeposits; // Total sum of all first deposits, initialized to 0
    uint256 public totalReferralEarnings = 0; // Total referral earnings
    uint256 public totalReferralWithdrawals = 0; // Total referral withdrawals
 
 	constructor() {
     owner = msg.sender; // Assign the contract creator as the owner of the contract
+     externalContractAddress = address(0); // Initial value - zero address
     // Register the contract owner as the first player in the system
     players[owner].referrer = address(0);
     }
@@ -432,18 +434,6 @@ contract GetEthTop {
     // Return the calculated profit
     return profit;
     }
-
-    // Function to withdraw contract earnings, accessible only by the contract owner
-    function withdrawEarnings() external onlyOwner {
-    // Store the total contract earnings in a local variable
-    uint256 amount = contractEarnings;
-    // Reset contract earnings to zero
-    contractEarnings = 0;
-    // Transfer the stored amount to the owner's address
-    payable(owner).transfer(amount);
-    }
-
-
     
     // Function for donations to the first level
     function donateToFirstLevel() public payable {
@@ -470,14 +460,20 @@ contract GetEthTop {
     // Distribute 10% to the budget of the first level
     levels[1].budget += redistributionAmount;
     
-    // Reset contract earnings and transfer the withdrawal amount to the owner
+    // Reset contract earnings and transfer the withdrawal amount to external contract addres
     contractEarnings = 0;
-    payable(owner).transfer(withdrawalAmount);
+     (bool sent, ) = externalContractAddress.call{value: withdrawalAmount}("");
+        require(sent, "Failed to send Ether");
     
     // Log the event of owner's withdrawal and redistribution
     emit OwnerWithdrawal(owner, withdrawalAmount, redistributionAmount);
     }
-
+    
+    // Function for changing the address of an external contract (only for the owner)
+    function updateExternalContractAddress(address _newAddress) external onlyOwner {
+        require(_newAddress != address(0), "Invalid address");
+        externalContractAddress = _newAddress;
+    }
 
     // Modifier to ensure that only the contract owner can call certain functions
     modifier onlyOwner() {
