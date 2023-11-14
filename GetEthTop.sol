@@ -24,24 +24,21 @@ contract GetEthTop {
     players[owner].referrer = address(0);
     }
 
-    uint256[] LEVEL_STEPS = [39, 30, 15, 4, 4, 5, 4, 4, 5, 4, 3, 4, 4, 3]; // Steps required for each level
+    uint256[] LEVEL_STEPS = [30, 15, 4, 4, 5, 4, 4, 5, 4, 3, 5]; // Steps required for each level
 
     // Step cost on each level in ether
     uint256[] public STEP_COSTS = [
-    0.005 ether, // Cost of a step on level 1
-    0.01 ether,  // Cost of a step on level 2
-    0.1 ether,   // Cost of a step on level 3
-    0.5 ether,   // Cost of a step on level 4
-    1 ether,     // Cost of a step on level 5
-    2 ether,     // Cost of a step on level 6
-    5 ether,     // Cost of a step on level 7
-    10 ether,    // Cost of a step on level 8
-    20 ether,    // Cost of a step on level 9
-    50 ether,    // Cost of a step on level 10
-    100 ether,   // Cost of a step on level 11
-    150 ether,   // Cost of a step on level 12
-    250 ether,   // Cost of a step on level 13
-    500 ether    // Cost of a step on level 14
+    0.01 ether,  // Cost of a step on level 1
+    0.1 ether,   // Cost of a step on level 2
+    0.5 ether,   // Cost of a step on level 3
+    1 ether,     // Cost of a step on level 4
+    2 ether,     // Cost of a step on level 5
+    5 ether,     // Cost of a step on level 6
+    10 ether,    // Cost of a step on level 7
+    20 ether,    // Cost of a step on level 8
+    50 ether,    // Cost of a step on level 9
+    100 ether,   // Cost of a step on level 10
+    150 ether,   // Cost of a step on level 11
     ];
 	
 	
@@ -79,7 +76,7 @@ contract GetEthTop {
     mapping(address => Player) public players; 
 
     // Array representing data for each level in the game
-    Level[14] public levels; 
+    Level[11] public levels; 
 
     // Mapping to track total payouts for each player
     mapping(address => uint256) public totalPayouts; 
