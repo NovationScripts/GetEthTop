@@ -303,8 +303,8 @@ contract GetEthTop {
     // Retrieve player information from the storage.
     Player storage player = players[playerAddress];
     
-    // Check if the player has reached the final level (14th).
-    if (player.currentLevel == 14) {
+    // Check if the player has reached the final level (11th).
+    if (player.currentLevel == 11) {
         // Mark the player as having finished the game.
         player.hasFinished = true;
         // Exit the function as the player has completed the game.
@@ -318,7 +318,7 @@ contract GetEthTop {
     player.isWaiting = true;
 
     // Note: Levels start from 0, with 0 being the registration level.
-    // Players begin at level 0 and can advance up to level 14.
+    // Players begin at level 0 and can advance up to level 11.
     // Add the player to the queue of the next level.
     levels[player.currentLevel].playersQueue.queue[levels[player.currentLevel].playersQueue.back] = playerAddress;
     levels[player.currentLevel].playersQueue.back += 1;
