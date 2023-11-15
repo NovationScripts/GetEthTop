@@ -19,7 +19,7 @@ A certain percentage of each player's contribution accumulates to provide level 
 
 Players cannot make a repeat deposit sooner than two hours after their previous deposit.
 
-The waiting time decreases by one second for each referral who completes the first level, until it reaches zero.
+Fixed waiting time of 10 hours for the next step.
 
 **Fund Redistribution:**
 
