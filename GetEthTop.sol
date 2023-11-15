@@ -13,7 +13,6 @@ contract GetEthTop {
    uint256 public contractEarnings; // Total earnings of the contract
    address public owner; // Owner of the contract
    address public externalContractAddress; // External Contract Address
-   uint256 public totalFirstDeposits; // Total sum of all first deposits, initialized to 0
    uint256 public totalReferralEarnings = 0; // Total referral earnings
    uint256 public totalReferralWithdrawals = 0; // Total referral withdrawals
 
@@ -38,7 +37,7 @@ contract GetEthTop {
     20 ether,    // Cost of a step on level 8
     50 ether,    // Cost of a step on level 9
     100 ether,   // Cost of a step on level 10
-    150 ether   // Cost of a step on level 11
+    150 ether    // Cost of a step on level 11
     ];
 	
 	
@@ -104,17 +103,12 @@ contract GetEthTop {
     // Register the player with the specified referrer
     players[msg.sender].referrer = _referrer;
     }
-    
-    // Function to get the total number of first deposits
-    function getTotalFirstDeposits() public view returns (uint256) {
-    return totalFirstDeposits;
-    }
 
     // Function to check if a player can make the next step
     function canMakeNextStep(address playerAddress) public view returns (bool) {
     Player storage player = players[playerAddress];
-    // Required waiting time is 2 hours minus 1 second for each successful referral
-    uint256 requiredWait = 2 hours - player.referralsCompletedFirstLevel;
+    // Set a fixed waiting time of 10 hours
+    uint256 requiredWait = 10 hours;
     // Check if the current time is greater than the player's last step time plus the required wait time
     return block.timestamp >= (player.lastStepTime + requiredWait);
     }
@@ -128,15 +122,10 @@ contract GetEthTop {
     // Check if the deposit amount matches the step cost for the player's current level
     require(msg.value == STEP_COSTS[player.currentLevel], "Incorrect deposit for the current level");
     
-    // Calculate waiting time as 2 hours minus 1 second for each referral who completed the first level
-    uint256 waitingTime = 2 hours - player.referralsCompletedFirstLevel * 1 seconds;
+    // Set a fixed waiting time of 10 hours
+    uint256 waitingTime = 10 hours;
     // Ensure the current time is greater than the player's last step time plus waiting time
     require(block.timestamp >= player.lastStepTime + waitingTime, "You must wait to make the next step");
-
-    // Increment the counter for first deposits if the player is making a deposit at the first level
-    if (players[msg.sender].currentLevel == 1 && players[msg.sender].deposit == 0) {
-        totalFirstDeposits += 1;
-    }
     
     // Update the time of the player's last step
     player.lastStepTime = block.timestamp;
@@ -203,6 +192,7 @@ contract GetEthTop {
 
     // Send the remaining 90% to the referrer
     payable(msg.sender).transfer(withdrawalAmount);
+
     }
 
     // This function allows a player to play by making a step in the game.
@@ -296,8 +286,6 @@ contract GetEthTop {
     }
     }
 
-
-
     // Function to move a player to the next level.
     function moveToNextLevel(address playerAddress) internal {
     // Retrieve player information from the storage.
@@ -331,12 +319,6 @@ contract GetEthTop {
 
 
 
-    // Function to retrieve a player's referral earnings.
-    function getReferralEarnings() public view returns (uint256) {
-    // Returns the amount of referral earnings for the message sender.
-    return players[msg.sender].referralEarnings;
-    }
-
     // Function to get data of the current level of a player.
     function getCurrentLevelData() external view returns(Level memory) {
     // Retrieve player data from storage.
@@ -344,7 +326,7 @@ contract GetEthTop {
     // Check that the player's current level is valid (between 1 and 9).
     require(player.currentLevel > 0 && player.currentLevel <= 9, "Invalid level");
     // Return level data for the player's current level.
-    return levels[player.currentLevel - 1];
+    return levels[player.currentLevel];
     }
 
     // Function to get the count of players on a specified level.
@@ -352,7 +334,7 @@ contract GetEthTop {
     // Ensure the specified level is valid (between 1 and 9).
     require(_level > 0 && _level <= 9, "Invalid level");
     // Return the length of the player queue for the specified level.
-    return levels[_level - 1].playersQueue.queue.length;
+    return levels[_level].playersQueue.queue.length;
     }
 
     // Function to get the list of players on a specified level.
@@ -360,7 +342,7 @@ contract GetEthTop {
     // Ensure the specified level is valid (between 1 and 9).
     require(_level > 0 && _level <= 9, "Invalid level");
     // Return the addresses of players in the queue for the specified level.
-    return levels[_level - 1].playersQueue.queue;
+    return levels[_level].playersQueue.queue;
     }
 
     // Function to retrieve specific information about a player.
@@ -402,6 +384,12 @@ contract GetEthTop {
     return REFERRAL_COMMISSION;
     }
 
+     // Function to retrieve a player's referral earnings.
+    function getReferralEarnings() public view returns (uint256) {
+    // Returns the amount of referral earnings for the message sender.
+    return players[msg.sender].referralEarnings;
+    }
+    
     // Function to get the total referral earnings.
     function getTotalReferralEarnings() public view returns (uint256) {
     // Return the total amount of referral earnings.
@@ -447,6 +435,7 @@ contract GetEthTop {
     emit DonationMade(msg.sender, msg.value);
     }
 
+
     // Function for the owner to withdraw earnings
     function withdrawOwnerEarnings() external onlyOwner {
     // Calculate 10% of the contract earnings for redistribution
@@ -472,6 +461,12 @@ contract GetEthTop {
         externalContractAddress = _newAddress;
     }
 
+     // Internal function to complete the first level for a referrer
+    function completeFirstLevel(address referrer) internal {
+    // Increment the count of referrals who have completed the first level for the referrer
+    players[referrer].referralsCompletedFirstLevel += 1;
+    }
+
     // Modifier to ensure that only the contract owner can call certain functions
     modifier onlyOwner() {
     // Check that the message sender is the owner of the contract
@@ -487,11 +482,7 @@ contract GetEthTop {
     _; // Continue execution of the function
     }
 
-    // Internal function to complete the first level for a referrer
-    function completeFirstLevel(address referrer) internal {
-    // Increment the count of referrals who have completed the first level for the referrer
-    players[referrer].referralsCompletedFirstLevel += 1;
-    }
+   
 
     // Modifier to check if a payout is available for the calling player
     modifier canRequestPayout() {
