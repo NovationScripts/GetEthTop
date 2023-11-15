@@ -10,6 +10,7 @@ To start playing, users need to register (except for the contract owner, who is 
 New players cannot be registered without a referrer, ensuring a chain of participants.
 
 **Risks**
+
 **Initial Deposit and Referral Activity**
 
 The primary risk in the GetEthTop game is associated with the initial deposit of 0.01 ETH. This is the only amount that players need to invest from their own funds. All subsequent steps in the game and progression through the levels are funded by the profits earned during the gameplay.
