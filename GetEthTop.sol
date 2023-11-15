@@ -94,9 +94,6 @@ contract GetEthTop {
     // Check to ensure the player is not already registered
     require(players[msg.sender].referrer == address(0), "Player already registered");
 
-    // Ensure the registration is not for the first time in the system
-    require(msg.sender != owner, "Owner is already registered");
-
     // Check for the presence of a valid referrer in the system who is not the current player
     require(_referrer != address(0) && _referrer != msg.sender, "Invalid referrer");
 
