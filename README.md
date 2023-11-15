@@ -9,16 +9,6 @@ To start playing, users need to register (except for the contract owner, who is 
 
 New players cannot be registered without a referrer, ensuring a chain of participants.
 
-**Risks**
-
-**Initial Deposit and Referral Activity**
-
-The primary risk in the GetEthTop game is associated with the initial deposit of 0.01 ETH. This is the only amount that players need to invest from their own funds. All subsequent steps in the game and progression through the levels are funded by the profits earned during the gameplay.
-
-A key factor in a player's success is the active recruitment of new participants. The effectiveness of the referral system and a player’s ability to expand their network directly influence their potential earnings and progression through the levels. It's important to note that the game involves a degree of social interaction and network marketing, which can be both an advantage and a challenge, depending on individual skills and preferences.
-
-It is crucial to understand that, despite the potential for significant earnings, the game includes elements of risk inherent to all investment and gaming platforms. Players are advised to invest funds whose loss would not be critical to their financial situation.
-
 **Gameplay:** 
 
 Players make deposits and complete steps (making deposits and receiving payouts 50% higher than their deposit) corresponding to their levels, with the cost of steps increasing at each subsequent level.
@@ -96,7 +86,23 @@ At **GetEthTop**, we are not only focused on creating an engaging and profitable
 
 We believe that the success of our project will enhance the capabilities and popularity of Ethereum, making it more attractive to both developers and users.
 
+**Risks**
 
+**Initial Deposit and Referral Activity**
+
+The primary risk in the GetEthTop game is associated with the initial deposit of 0.01 ETH. This is the only amount that players need to invest from their own funds. All subsequent steps in the game and progression through the levels are funded by the profits earned during the gameplay.
+
+A key factor in a player's success is the active recruitment of new participants. The effectiveness of the referral system and a player’s ability to expand their network directly influence their potential earnings and progression through the levels. It's important to note that the game involves a degree of social interaction and network marketing, which can be both an advantage and a challenge, depending on individual skills and preferences.
+
+It is crucial to understand that, despite the potential for significant earnings, the game includes elements of risk inherent to all investment and gaming platforms. Players are advised to invest funds whose loss would not be critical to their financial situation.
+
+**Dependency of the Game on the Number of Participants**
+
+The key aspect of our game is its dependency on the number of participants. This game is designed to create a dynamic and interactive community, where the activity and engagement of each player contribute to the overall development and progress. The more participants join the game, the more exciting and varied the gameplay becomes.
+
+The game is structured in a way that both success and satisfaction from playing increase with the growing number of players. This not only fosters a lively and dynamic atmosphere but also enriches the gaming experience of each participant. We encourage new players to join our community, contributing to the development and expansion of this engaging gaming world.
+
+It is important to understand that the long-term sustainability and success of the game largely depend on the active participation and interaction of players. Therefore, we encourage our members to share their experiences, invite new players, and collectively build an exciting gaming environment.
 
 **Support Innovation and Creativity**
 
