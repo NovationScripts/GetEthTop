@@ -5,9 +5,10 @@ pragma solidity ^0.8.0;
 contract GetEthTop {
    // Constants for fund distribution
    uint256 public constant CONTRACT_COMMISSION = 9; // Contract commission percentage
-   uint256 public constant REWARD_POOL = 10; // Reward pool percentage
    uint256 public constant PAYOUT_MULTIPLIER = 150; // Payout multiplier
    uint256 public constant REFERRAL_COMMISSION = 1; // Referral commission percentage
+
+
 
    // Contract state variables
    uint256 public contractEarnings; // Total earnings of the contract
@@ -16,6 +17,8 @@ contract GetEthTop {
    uint256 public totalReferralEarnings = 0; // Total referral earnings
    uint256 public totalReferralWithdrawals = 0; // Total referral withdrawals
 
+
+
 	constructor() {
     owner = msg.sender; // Assign the contract creator as the owner of the contract
      externalContractAddress = address(0); // Initial value - zero address
@@ -23,7 +26,11 @@ contract GetEthTop {
     players[owner].referrer = address(0);
     }
 
+
+
     uint256[] LEVEL_STEPS = [30, 15, 4, 4, 4, 3, 3, 4, 3, 2, 5]; // Steps required for each level
+
+
 
     // Step cost on each level in ether
     uint256[] public STEP_COSTS = [
@@ -37,7 +44,7 @@ contract GetEthTop {
     20 ether,    // Cost of a step on level 8
     50 ether,    // Cost of a step on level 9
     100 ether,   // Cost of a step on level 10
-    150 ether    // Cost of a step on level 11
+    150 ether   // Cost of a step on level 11
     ];
 	
 	
@@ -56,29 +63,41 @@ contract GetEthTop {
     uint256 referralsCompletedFirstLevel; // Number of referrals who have completed the first level
     }
 	
-	// Structure for a queue
+
+
+	// Structure for a queue, I am working on it
     struct Queue {
     address[] queue; // Array of addresses in the queue
+
     uint256 front;   // Index of the front element in the queue
     uint256 back;    // Index of the back element in the queue
     }
+
+
 
     // Data structure for a level in the game
     struct Level {
     uint256 currentStep; // Current step within the level
     uint256 budget;      // Budget allocated for the level
-    uint256 reward;      // Reward for completing the level
     Queue playersQueue;  // Queue of players in the level
     }
+
+
 
     // Mapping of player addresses to their data
     mapping(address => Player) public players; 
 
+
+
     // Array representing data for each level in the game
     Level[11] public levels; 
 
+
+
     // Mapping to track total payouts for each player
     mapping(address => uint256) public totalPayouts; 
+
+
 
     // Events for logging actions in the contract
     event Registered(address indexed player, uint256 deposit, uint256 level); // Triggered when a player registers
@@ -88,6 +107,8 @@ contract GetEthTop {
     event OwnerWithdrawal(address indexed owner, uint256 withdrawalAmount, uint256 redistributedAmount); // Triggered when the owner withdraws funds
     event ReferralWithdrawal(address indexed referrer, uint256 withdrawalAmount, uint256 redistributedAmount); // Triggered when a referrer withdraws funds
     event ReferralWithdrawalMade(address indexed referrer, uint256 amount); // Triggered when a referrer successfully withdraws referral earnings
+
+
 
     // Function for registering a player
     function register(address _referrer) external {
@@ -101,17 +122,30 @@ contract GetEthTop {
     players[msg.sender].referrer = _referrer;
     }
 
-    // Function to check if a player can make the next step
-    function canMakeNextStep(address playerAddress) public view returns (bool) {
-    Player storage player = players[playerAddress];
-    // Set a fixed waiting time of 10 hours
-    uint256 requiredWait = 10 hours;
-    // Check if the current time is greater than the player's last step time plus the required wait time
-    return block.timestamp >= (player.lastStepTime + requiredWait);
+
+
+     // This function allows a player to play by making a step in the game.
+    function play() external payable onlyPlayer {
+    Player storage player = players[msg.sender];
+    // If the player's level is 0, set it to the first level on the first step.
+    if (player.currentLevel == 0) {
+        player.currentLevel = 1;
     }
+    // Add the sent value to the budget of the player's current level.
+    levels[player.currentLevel].budget += msg.value;
+    // Ensure the sent value matches the step cost for the current level.
+    require(msg.value == STEP_COSTS[player.currentLevel], "Incorrect step cost sent");
+
+    // Increment the number of steps completed by the player.
+    player.stepsCompleted++;
+    
+    
+    }
+    
 
 
-    // Function for making a deposit
+
+     // Function for making a deposit
     function makeDeposit(uint256 /* amount */) public payable onlyPlayer {
     Player storage player = players[msg.sender];
     // Ensure the player is not in waiting mode
@@ -142,11 +176,14 @@ contract GetEthTop {
 
     // Increase the player's deposit amount
     player.deposit += msg.value;
-
-    // Calculate the reward from the deposit
-    uint256 reward = (msg.value * REWARD_POOL) / 100;
+    
+	// Add the player to the queue of his current level
+    uint256 playerLevel = player.currentLevel;
+    levels[playerLevel].playersQueue.queue.push(msg.sender);
+    levels[playerLevel].playersQueue.back += 1;
+    
     // Update the budget of the player's current level
-    levels[player.currentLevel].budget += (msg.value - referralFee - contractCommission - reward);
+    levels[player.currentLevel].budget += (msg.value - referralFee - contractCommission);
     
     // Retrieve the player's referrer
     address referrer = player.referrer;
@@ -160,7 +197,118 @@ contract GetEthTop {
     }
     }
 	
-	// Function to withdraw referral earnings
+
+   
+       // Function to check if a player can make the next step
+    function canMakeNextStep(address playerAddress) public view returns (bool) {
+    Player storage player = players[playerAddress];
+    // Set a fixed waiting time of 10 hours
+    uint256 requiredWait = 10 hours;
+    // Check if the current time is greater than the player's last step time plus the required wait time
+    return block.timestamp >= (player.lastStepTime + requiredWait);
+    }
+
+
+
+    // Function to check if a payout is available for a given player.
+    function isPayoutAvailableFor(address playerAddress) public view returns (bool) {
+    Player storage player = players[playerAddress];
+    // Access the current level data of the player.
+    Level storage currentLevel = levels[player.currentLevel];
+    
+    // Check if the player is in a waiting state and if the level's budget is sufficient 
+    // for a payout based on the player's deposit and the payout multiplier.
+    if (player.isWaiting && currentLevel.budget >= player.deposit * PAYOUT_MULTIPLIER / 100) {
+        return true; // Payout is available.
+    }
+    return false; // Payout is not available.
+    }
+
+    // Function for players to request their payout.
+    function requestPayout() external canRequestPayout {
+    // Process the payments for the player's current level.
+    processPayments(players[msg.sender].currentLevel);
+    }
+
+	
+
+
+    function processPayments(uint256 level) internal onlyPlayer {
+    // Loop as long as the budget for the level is enough for the reward, and there are players in the queue.
+    while (levels[level].budget > 0 && levels[level].playersQueue.queue.length > 0) {
+        // Skip already processed players
+        while (levels[level].playersQueue.front < levels[level].playersQueue.queue.length && 
+               levels[level].playersQueue.processed[levels[level].playersQueue.front]) {
+            levels[level].playersQueue.front += 1;
+        }
+
+        // Break if all players in the queue have been processed
+        if (levels[level].playersQueue.front >= levels[level].playersQueue.queue.length) {
+            break;
+        }
+
+        address payable playerAddress = payable(levels[level].playersQueue.queue[levels[level].playersQueue.front]);
+        Player storage currentPlayer = players[playerAddress];
+
+        // Calculate the payout based on the player's deposit and the payout multiplier
+        uint256 payout = currentPlayer.deposit * PAYOUT_MULTIPLIER / 100;
+
+        // Check if the contract balance can cover the payout
+        if (address(this).balance >= payout) {
+            // Transfer the payout to the player
+            playerAddress.transfer(payout);
+            // Record the total payout for the player
+            totalPayouts[playerAddress] += payout;
+            // Emit an event for the received payment
+            emit ReceivedPayment(playerAddress, payout);
+
+            // Adjust the level's budget by subtracting the net payout (minus the original deposit)
+            levels[level].budget -= (payout - currentPlayer.deposit);
+            // Set the player's waiting status to false
+            currentPlayer.isWaiting = false;
+
+            // Move the player to the next level if they have reached the maximum number of steps for their level
+            if (currentPlayer.stepsCompleted >= LEVEL_STEPS[currentPlayer.currentLevel]) {
+                moveToNextLevel(playerAddress);
+            }
+
+            // Mark the player as processed
+            levels[level].playersQueue.processed[levels[level].playersQueue.front] = true;
+        } else {
+            // Exit the loop if the contract balance isn't sufficient for the payout
+            break;
+        }
+    }
+    }
+
+
+    // Function to move a player to the next level.
+    function moveToNextLevel(address playerAddress) internal {
+    // Retrieve player information from the storage.
+    Player storage player = players[playerAddress];
+    
+    // Check if the player has reached the final level (11th).
+    if (player.currentLevel == 11) {
+        // Mark the player as having finished the game.
+        player.hasFinished = true;
+        // Exit the function as the player has completed the game.
+        return;
+    }
+    
+    // Increment the player's current level to move to the next level.
+    player.currentLevel += 1;
+    // Reset the number of steps completed.
+    player.stepsCompleted = 0;  
+
+   
+    // Emit an event indicating the player has levelled up.
+    emit LevelUp(playerAddress, player.currentLevel);
+
+    }
+
+
+
+    // Function to withdraw referral earnings
     function withdrawReferralEarnings() external onlyPlayer {
     Player storage player = players[msg.sender];
     uint256 amount = player.referralEarnings;
@@ -192,127 +340,6 @@ contract GetEthTop {
 
     }
 
-    // This function allows a player to play by making a step in the game.
-    function play() external payable onlyPlayer {
-    Player storage player = players[msg.sender];
-    // If the player's level is 0, set it to the first level on the first step.
-    if (player.currentLevel == 0) {
-        player.currentLevel = 1;
-    }
-    // Add the sent value to the budget of the player's current level.
-    levels[player.currentLevel].budget += msg.value;
-    // Ensure the sent value matches the step cost for the current level.
-    require(msg.value == STEP_COSTS[player.currentLevel], "Incorrect step cost sent");
-
-    // Increment the number of steps completed by the player.
-    player.stepsCompleted++;
-    
-    // If the player has reached the maximum number of steps for their level,
-    // move them to the next level.
-    if (player.stepsCompleted >= LEVEL_STEPS[player.currentLevel]) {
-        moveToNextLevel(msg.sender);
-    }
-    }
-
-
-    // Function to check if a payout is available for a given player.
-    function isPayoutAvailableFor(address playerAddress) public view returns (bool) {
-    Player storage player = players[playerAddress];
-    // Access the current level data of the player.
-    Level storage currentLevel = levels[player.currentLevel];
-    
-    // Check if the player is in a waiting state and if the level's budget is sufficient 
-    // for a payout based on the player's deposit and the payout multiplier.
-    if (player.isWaiting && currentLevel.budget >= player.deposit * PAYOUT_MULTIPLIER / 100) {
-        return true; // Payout is available.
-    }
-    return false; // Payout is not available.
-    }
-
-    // Function for players to request their payout.
-    function requestPayout() external canRequestPayout {
-    // Process the payments for the player's current level.
-    processPayments(players[msg.sender].currentLevel);
-    }
-
-	
-
-
-    // Function to process payments for a specific level.
-    function processPayments(uint256 level) internal onlyPlayer {
-    // Loop as long as the budget for the level is enough for the reward, and there are players in the queue.
-    while (levels[level].budget >= levels[level].reward && levels[level].playersQueue.queue.length > 0) {
-        // Get the address of the first player in the queue and make it payable.
-        address payable playerAddress = payable(levels[level].playersQueue.queue[levels[level].playersQueue.front]);
-        // Retrieve the current player's data.
-        Player storage currentPlayer = players[playerAddress];
-        // Move to the next player in the queue.
-        levels[level].playersQueue.front += 1;
-
-        // Calculate the payout based on the player's deposit and the payout multiplier.
-        uint256 payout = currentPlayer.deposit * PAYOUT_MULTIPLIER / 100;
-
-        // Logic to redistribute 10% of the reward to the first level's budget if it's not the first level.
-        if (currentPlayer.currentLevel > 1) {
-            uint256 rewardRedistribution = payout / 10;
-            payout -= rewardRedistribution;
-            levels[1].budget += rewardRedistribution;
-            // An event for logging the redistribution could be added here if necessary.
-        }
-
-        // Check if the contract balance can cover the payout.
-        if (address(this).balance >= payout) {
-            // Transfer the payout to the player.
-            playerAddress.transfer(payout);
-            // Record the total payout for the player.
-            totalPayouts[playerAddress] += payout;
-            // Emit an event for the received payment.
-            emit ReceivedPayment(playerAddress, payout);
-
-            // Adjust the level's budget by subtracting the net payout (minus the original deposit).
-            levels[level].budget -= (payout - currentPlayer.deposit);
-            // Set the player's waiting status to false.
-            currentPlayer.isWaiting = false;
-
-            // Move the player to the next level.
-            moveToNextLevel(playerAddress);
-        } else {
-            // If the contract balance isn't sufficient for the payout, exit the loop.
-            break;
-        }
-    }
-    }
-
-    // Function to move a player to the next level.
-    function moveToNextLevel(address playerAddress) internal {
-    // Retrieve player information from the storage.
-    Player storage player = players[playerAddress];
-    
-    // Check if the player has reached the final level (11th).
-    if (player.currentLevel == 11) {
-        // Mark the player as having finished the game.
-        player.hasFinished = true;
-        // Exit the function as the player has completed the game.
-        return;
-    }
-    
-    // Increment the player's current level to move to the next level.
-    player.currentLevel += 1;
-    // Reset the number of steps completed and set the waiting status.
-    player.stepsCompleted = 0;  
-    player.isWaiting = true;
-
-    // Note: Levels start from 0, with 0 being the registration level.
-    // Players begin at level 0 and can advance up to level 11.
-    // Add the player to the queue of the next level.
-    levels[player.currentLevel].playersQueue.queue[levels[player.currentLevel].playersQueue.back] = playerAddress;
-    levels[player.currentLevel].playersQueue.back += 1;
-    // Emit an event indicating the player has levelled up.
-    emit LevelUp(playerAddress, player.currentLevel);
-
-    // Process payments for the next level, as the player moves up.
-    processPayments(player.currentLevel);
-    }
 
 
 
@@ -320,24 +347,24 @@ contract GetEthTop {
     function getCurrentLevelData() external view returns(Level memory) {
     // Retrieve player data from storage.
     Player storage player = players[msg.sender];
-    // Check that the player's current level is valid (between 1 and 9).
-    require(player.currentLevel > 0 && player.currentLevel <= 9, "Invalid level");
+    // Check that the player's current level is valid (between 1 and 11).
+    require(player.currentLevel > 0 && player.currentLevel <= 11, "Invalid level");
     // Return level data for the player's current level.
     return levels[player.currentLevel];
     }
 
     // Function to get the count of players on a specified level.
     function getPlayersCountOnLevel(uint256 _level) external view returns(uint256) {
-    // Ensure the specified level is valid (between 1 and 9).
-    require(_level > 0 && _level <= 9, "Invalid level");
+    // Ensure the specified level is valid (between 1 and 11).
+    require(_level > 0 && _level <= 11, "Invalid level");
     // Return the length of the player queue for the specified level.
     return levels[_level].playersQueue.queue.length;
     }
 
     // Function to get the list of players on a specified level.
     function getPlayersOnLevel(uint256 _level) external view returns(address[] memory) {
-    // Ensure the specified level is valid (between 1 and 9).
-    require(_level > 0 && _level <= 9, "Invalid level");
+    // Ensure the specified level is valid (between 1 and 11).
+    require(_level > 0 && _level <= 11, "Invalid level");
     // Return the addresses of players in the queue for the specified level.
     return levels[_level].playersQueue.queue;
     }
@@ -357,7 +384,7 @@ contract GetEthTop {
     uint256[] memory budgets = new uint256[](levels.length);
     // Iterate over each level and store its budget in the array.
     for (uint256 i = 0; i < levels.length; i++) {
-        budgets[i] = levels[i + 1].budget; // Offset by +1 as levels start from 1.
+        budgets[i] = levels[i].budget; // No need for offset, as levels are now 0-indexed.
     }
     // Return the array of budgets.
     return budgets;
