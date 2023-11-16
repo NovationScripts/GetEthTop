@@ -28,11 +28,11 @@ contract GetEthTop {
 
 
 
-    uint256[] LEVEL_STEPS = [30, 15, 4, 4, 4, 3, 3, 4, 3, 2, 5]; // Steps required for each level
+    uint256[] LEVEL_STEPS = [30, 15, 4, 4, 4, 3, 3, 4, 3, 2, 5]; // Steps required for each level, I am working on it
 
 
 
-    // Step cost on each level in ether
+    // Step cost on each level in ether, I am working on it
     uint256[] public STEP_COSTS = [
     0.01 ether,  // Cost of a step on level 1
     0.1 ether,   // Cost of a step on level 2
