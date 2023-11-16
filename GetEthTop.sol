@@ -60,7 +60,6 @@ contract GetEthTop {
     bool hasFinished; // Flag to track whether the player has finished the game
     uint256 referralWithdrawals; // Variable added to track the total amount of withdrawals made by referrals
     uint256 lastStepTime; // Timestamp of the player's last step
-    uint256 referralsCompletedFirstLevel; // Number of referrals who have completed the first level
     }
 	
 
@@ -485,11 +484,6 @@ contract GetEthTop {
         externalContractAddress = _newAddress;
     }
 
-     // Internal function to complete the first level for a referrer
-    function completeFirstLevel(address referrer) internal {
-    // Increment the count of referrals who have completed the first level for the referrer
-    players[referrer].referralsCompletedFirstLevel += 1;
-    }
 
     // Modifier to ensure that only the contract owner can call certain functions
     modifier onlyOwner() {
