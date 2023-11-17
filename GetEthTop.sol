@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 // version 4.3.2 , working on optimization for billions of players
+
 pragma solidity ^0.8.0;
 
 contract GetEthTop {
@@ -59,7 +60,7 @@ contract GetEthTop {
     uint256 stepsCompleted;  // Number of steps completed by the player
     bool hasFinished; // Flag to track whether the player has finished the game
     uint256 referralWithdrawals; // Variable added to track the total amount of withdrawals made by referrals
-    uint256 lastStepTime; // Timestamp of the player's last step
+    uint256 lastDepositTime; // Время последнего депозита игрока;
     uint256 lastPayoutAttempt; // Время последней попытки выплаты
     bool hasReceivedPayment; // Добавляем поле для отслеживания, получил ли игрок выплату
     
@@ -149,13 +150,9 @@ contract GetEthTop {
     // Check if the deposit amount matches the step cost for the player's current level
     require(msg.value == STEP_COSTS[player.currentLevel], "Incorrect deposit for the current level");
     
-    // Set a fixed waiting time of 10 hours
-    uint256 waitingTime = 10 hours;
-    // Ensure the current time is greater than the player's last step time plus waiting time
-    require(block.timestamp >= player.lastStepTime + waitingTime, "You must wait to make the next step");
     
-    // Update the time of the player's last step
-    player.lastStepTime = block.timestamp;
+    // Update the time of the player's last deposit
+    player.lastDepositTime = block.timestamp; // Обновление времени последнего депозита
 
     // If the player is not on the first level, redistribute 1% to the first level's budget
     if(players[msg.sender].currentLevel > 1) {
@@ -198,8 +195,8 @@ contract GetEthTop {
     // Set a fixed waiting time of 10 hours
     uint256 requiredWait = 10 hours;
 
-    // Проверяем, что текущее время больше времени последнего шага плюс необходимое время ожидания
-    bool hasWaitedLongEnough = block.timestamp >= (player.lastStepTime + requiredWait);
+    // Проверяем, что текущее время больше времени последнего депозита плюс необходимое время ожидания
+    bool hasWaitedLongEnough = block.timestamp >= (player.lastDepositTime + requiredWait);
 
     // Проверяем, что игрок получил выплату по последнему депозиту
     bool hasReceivedPayment = player.hasReceivedPayment;
@@ -240,6 +237,9 @@ contract GetEthTop {
     address payable playerAddress = payable(msg.sender);
     Player storage player = players[playerAddress];
 
+    // Set a fixed waiting time of 10 hours before the first payout attempt
+    require(block.timestamp >= player.lastDepositTime + 10 hours, "You must wait 10 hours before the first payout attempt");
+   
     // Проверяем, доступна ли выплата
     if (isPayoutAvailableFor(playerAddress)) {
         uint256 payout = player.deposit * PAYOUT_MULTIPLIER / 100;
