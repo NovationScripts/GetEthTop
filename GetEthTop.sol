@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// version 4.3.2 , working on optimization
+// version 4.3.2 , working on optimization for billions of players
 pragma solidity ^0.8.0;
 
 contract GetEthTop {
