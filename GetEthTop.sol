@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-
+// version 4.3.2 , working on optimization
 pragma solidity ^0.8.0;
 
 contract GetEthTop {
@@ -16,8 +16,8 @@ contract GetEthTop {
    address public externalContractAddress; // External Contract Address
    uint256 public totalReferralEarnings = 0; // Total referral earnings
    uint256 public totalReferralWithdrawals = 0; // Total referral withdrawals
-
-
+   uint256 public totalPlayerCount; // Счетчик общего числа игроков
+   
 
 	constructor() {
     owner = msg.sender; // Assign the contract creator as the owner of the contract
@@ -28,11 +28,11 @@ contract GetEthTop {
 
 
 
-    uint256[] LEVEL_STEPS = [30, 15, 4, 4, 4, 3, 3, 4, 3, 2, 5]; // Steps required for each level, I am working on it
+    uint256[] LEVEL_STEPS = [30, 15, 4, 4, 4, 3, 3, 4, 3, 2, 5]; // Steps required for each level
 
 
 
-    // Step cost on each level in ether, I am working on it
+    // Step cost on each level in ether
     uint256[] public STEP_COSTS = [
     0.01 ether,  // Cost of a step on level 1
     0.1 ether,   // Cost of a step on level 2
@@ -60,17 +60,14 @@ contract GetEthTop {
     bool hasFinished; // Flag to track whether the player has finished the game
     uint256 referralWithdrawals; // Variable added to track the total amount of withdrawals made by referrals
     uint256 lastStepTime; // Timestamp of the player's last step
+    uint256 lastPayoutAttempt; // Время последней попытки выплаты
+    bool hasReceivedPayment; // Добавляем поле для отслеживания, получил ли игрок выплату
+    
     }
 	
 
 
-	// Structure for a queue, I am working on it
-    struct Queue {
-    address[] queue; // Array of addresses in the queue
-
-    uint256 front;   // Index of the front element in the queue
-    uint256 back;    // Index of the back element in the queue
-    }
+	
 
 
 
@@ -78,7 +75,7 @@ contract GetEthTop {
     struct Level {
     uint256 currentStep; // Current step within the level
     uint256 budget;      // Budget allocated for the level
-    Queue playersQueue;  // Queue of players in the level
+   
     }
 
 
@@ -176,10 +173,7 @@ contract GetEthTop {
     // Increase the player's deposit amount
     player.deposit += msg.value;
     
-	// Add the player to the queue of his current level
-    uint256 playerLevel = player.currentLevel;
-    levels[playerLevel].playersQueue.queue.push(msg.sender);
-    levels[playerLevel].playersQueue.back += 1;
+	
     
     // Update the budget of the player's current level
     levels[player.currentLevel].budget += (msg.value - referralFee - contractCommission);
@@ -198,30 +192,40 @@ contract GetEthTop {
 	
 
    
-       // Function to check if a player can make the next step
+    // Function to check if a player can make the next step
     function canMakeNextStep(address playerAddress) public view returns (bool) {
     Player storage player = players[playerAddress];
     // Set a fixed waiting time of 10 hours
     uint256 requiredWait = 10 hours;
-    // Check if the current time is greater than the player's last step time plus the required wait time
-    return block.timestamp >= (player.lastStepTime + requiredWait);
+
+    // Проверяем, что текущее время больше времени последнего шага плюс необходимое время ожидания
+    bool hasWaitedLongEnough = block.timestamp >= (player.lastStepTime + requiredWait);
+
+    // Проверяем, что игрок получил выплату по последнему депозиту
+    bool hasReceivedPayment = player.hasReceivedPayment;
+
+    // Игрок может сделать следующий шаг, только если он подождал достаточно времени
+    // и получил выплату по последнему депозиту
+    return hasWaitedLongEnough && hasReceivedPayment;
     }
 
 
 
-    // Function to check if a payout is available for a given player.
     function isPayoutAvailableFor(address playerAddress) public view returns (bool) {
     Player storage player = players[playerAddress];
-    // Access the current level data of the player.
     Level storage currentLevel = levels[player.currentLevel];
     
-    // Check if the player is in a waiting state and if the level's budget is sufficient 
-    // for a payout based on the player's deposit and the payout multiplier.
-    if (player.isWaiting && currentLevel.budget >= player.deposit * PAYOUT_MULTIPLIER / 100) {
-        return true; // Payout is available.
+    // Проверяем, достаточно ли средств в бюджете уровня
+    bool isBudgetAvailable = currentLevel.budget >= player.deposit * PAYOUT_MULTIPLIER / 100;
+
+    // Проверяем, прошло ли два часа с последней попытки выплаты
+    bool isTimeElapsed = block.timestamp >= (player.lastPayoutAttempt + 2 hours);
+
+    return isBudgetAvailable && isTimeElapsed;
     }
-    return false; // Payout is not available.
-    }
+
+
+
 
     // Function for players to request their payout.
     function requestPayout() external canRequestPayout {
@@ -233,50 +237,34 @@ contract GetEthTop {
 
 
     function processPayments(uint256 level) internal onlyPlayer {
-    // Loop as long as the budget for the level is enough for the reward, and there are players in the queue.
-    while (levels[level].budget > 0 && levels[level].playersQueue.queue.length > 0) {
-        // Skip already processed players
-        while (levels[level].playersQueue.front < levels[level].playersQueue.queue.length && 
-               levels[level].playersQueue.processed[levels[level].playersQueue.front]) {
-            levels[level].playersQueue.front += 1;
-        }
+    address payable playerAddress = payable(msg.sender);
+    Player storage player = players[playerAddress];
 
-        // Break if all players in the queue have been processed
-        if (levels[level].playersQueue.front >= levels[level].playersQueue.queue.length) {
-            break;
-        }
+    // Проверяем, доступна ли выплата
+    if (isPayoutAvailableFor(playerAddress)) {
+        uint256 payout = player.deposit * PAYOUT_MULTIPLIER / 100;
 
-        address payable playerAddress = payable(levels[level].playersQueue.queue[levels[level].playersQueue.front]);
-        Player storage currentPlayer = players[playerAddress];
-
-        // Calculate the payout based on the player's deposit and the payout multiplier
-        uint256 payout = currentPlayer.deposit * PAYOUT_MULTIPLIER / 100;
-
-        // Check if the contract balance can cover the payout
         if (address(this).balance >= payout) {
-            // Transfer the payout to the player
+            // Выполняем выплату
             playerAddress.transfer(payout);
-            // Record the total payout for the player
-            totalPayouts[playerAddress] += payout;
-            // Emit an event for the received payment
             emit ReceivedPayment(playerAddress, payout);
 
-            // Adjust the level's budget by subtracting the net payout (minus the original deposit)
-            levels[level].budget -= (payout - currentPlayer.deposit);
-            // Set the player's waiting status to false
-            currentPlayer.isWaiting = false;
+            // Обновляем бюджет уровня и статус игрока
+            levels[level].budget -= payout;
+            player.hasReceivedPayment = true;
+            player.isWaiting = false; // Обновляем статус ожидания игрока
 
-            // Move the player to the next level if they have reached the maximum number of steps for their level
-            if (currentPlayer.stepsCompleted >= LEVEL_STEPS[currentPlayer.currentLevel]) {
+            // Переводим игрока на следующий уровень, если достигнут максимум шагов
+            if (player.stepsCompleted >= LEVEL_STEPS[player.currentLevel]) {
                 moveToNextLevel(playerAddress);
             }
-
-            // Mark the player as processed
-            levels[level].playersQueue.processed[levels[level].playersQueue.front] = true;
         } else {
-            // Exit the loop if the contract balance isn't sufficient for the payout
-            break;
+            // Выплата доступна, но не была успешной из-за недостатка средств
+            player.lastPayoutAttempt = block.timestamp;
         }
+    } else {
+        // Выплата не доступна из-за ограничений бюджета
+        player.lastPayoutAttempt = block.timestamp;
     }
     }
 
@@ -340,7 +328,11 @@ contract GetEthTop {
     }
 
 
+    function getTotalPlayers() public view returns(uint256) {
+    return totalPlayerCount;
+    }
 
+  
 
     // Function to get data of the current level of a player.
     function getCurrentLevelData() external view returns(Level memory) {
@@ -352,21 +344,7 @@ contract GetEthTop {
     return levels[player.currentLevel];
     }
 
-    // Function to get the count of players on a specified level.
-    function getPlayersCountOnLevel(uint256 _level) external view returns(uint256) {
-    // Ensure the specified level is valid (between 1 and 11).
-    require(_level > 0 && _level <= 11, "Invalid level");
-    // Return the length of the player queue for the specified level.
-    return levels[_level].playersQueue.queue.length;
-    }
-
-    // Function to get the list of players on a specified level.
-    function getPlayersOnLevel(uint256 _level) external view returns(address[] memory) {
-    // Ensure the specified level is valid (between 1 and 11).
-    require(_level > 0 && _level <= 11, "Invalid level");
-    // Return the addresses of players in the queue for the specified level.
-    return levels[_level].playersQueue.queue;
-    }
+    
 
     // Function to retrieve specific information about a player.
     function getPlayerInfo(address _playerAddress) external view returns(uint256 level, uint256 stepsCompleted, bool hasFinished) {
