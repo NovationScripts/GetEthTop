@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-
+// Version 4.2.0
 pragma solidity ^0.8.0;
 
 contract GetEthTop {
@@ -60,9 +60,7 @@ contract GetEthTop {
     bool hasFinished; // Flag to track whether the player has finished the game
     uint256 referralWithdrawals; // Variable added to track the total amount of withdrawals made by referrals
     uint256 lastDepositTime; // Время последнего депозита игрока;
-    uint256 lastPayoutAttempt; // Время последней попытки выплаты
-    bool hasReceivedPayment; // Добавляем поле для отслеживания, получил ли игрок выплату
-    
+    uint256 nextPayoutAttemptTime;
     }
 	
 
@@ -116,6 +114,9 @@ contract GetEthTop {
 
     // Register the player with the specified referrer
     players[msg.sender].referrer = _referrer;
+
+    // Устанавливаем начальное время ожидания для выплат
+    players[msg.sender].nextPayoutAttemptTime = block.timestamp + 10 hours;
     }
 
 
@@ -152,7 +153,6 @@ contract GetEthTop {
     
     // Update the time of the player's last deposit
     player.lastDepositTime = block.timestamp; // Обновление времени последнего депозита
-    player.hasReceivedPayment = false; // Сброс флага, так как это новый депозит
 
     // If the player is not on the first level, redistribute 1% to the first level's budget
     if(players[msg.sender].currentLevel > 1) {
@@ -188,15 +188,26 @@ contract GetEthTop {
     }
 	
 
-   
+
+
+
+
+
+
     // Function to check if a player can make the next step
  function canMakeNextStep(address playerAddress) public view returns (bool) {
     Player storage player = players[playerAddress];
 
-    // Если игрок уже делал депозит, он может сделать следующий шаг только после получения выплаты
-    // Если депозитов не было, игрок может сделать депозит
-    return player.lastDepositTime == 0 || player.hasReceivedPayment;
+    // Игрок может сделать следующий шаг, если он не в режиме ожидания и уже сделал хотя бы один депозит
+    // Если депозитов не было, игрок может сделать первый депозит
+    return player.lastDepositTime == 0 || !player.isWaiting;
 }
+
+
+
+
+
+
 
 
 
@@ -207,8 +218,8 @@ contract GetEthTop {
     // Проверяем, достаточно ли средств в бюджете уровня
     bool isBudgetAvailable = currentLevel.budget >= player.deposit * PAYOUT_MULTIPLIER / 100;
 
-    // Проверяем, прошло ли два часа с последней попытки выплаты
-    bool isTimeElapsed = block.timestamp >= (player.lastPayoutAttempt + 2 hours);
+    // Проверяем, прошло ли установленное время ожидания с последней попытки выплаты
+    bool isTimeElapsed = block.timestamp >= player.nextPayoutAttemptTime;
 
     return isBudgetAvailable && isTimeElapsed;
     }
@@ -216,49 +227,49 @@ contract GetEthTop {
 
 
 
-    // Function for players to request their payout.
     function requestPayout() external canRequestPayout {
-    // Process the payments for the player's current level.
-    processPayments(players[msg.sender].currentLevel);
+    Player storage player = players[msg.sender];
+    uint256 level = player.currentLevel;
+    
+    if (!isPayoutAvailableFor(msg.sender)) {
+        // Неудачная попытка выплаты, обновляем время ожидания
+        reduceWaitingTime(player);
+        return; // Прерываем функцию, если выплата не доступна
     }
 
-	
+    // Если выплата доступна, продолжаем процесс выплаты
+    processPayments(level);
+    }
+
+	function reduceWaitingTime(Player storage player) internal {
+    uint256 currentTime = block.timestamp;
+    if (player.nextPayoutAttemptTime > currentTime + 1 hours) {
+        player.nextPayoutAttemptTime -= 1 hours;
+    } else {
+        player.nextPayoutAttemptTime = currentTime + 1 hours;
+    }
+    }
 
 
-    function processPayments(uint256 level) internal onlyPlayer {
+   function processPayments(uint256 level) internal onlyPlayer {
     address payable playerAddress = payable(msg.sender);
     Player storage player = players[playerAddress];
 
-    // Set a fixed waiting time of 10 hours before the first payout attempt
-    require(block.timestamp >= player.lastDepositTime + 10 hours, "You must wait 10 hours before the first payout attempt");
-   
-    // Проверяем, доступна ли выплата
-    if (isPayoutAvailableFor(playerAddress)) {
-        uint256 payout = player.deposit * PAYOUT_MULTIPLIER / 100;
+    uint256 payout = player.deposit * PAYOUT_MULTIPLIER / 100;
 
-        if (address(this).balance >= payout) {
-            // Выполняем выплату
-            playerAddress.transfer(payout);
-            emit ReceivedPayment(playerAddress, payout);
+    // Выполняем выплату
+    playerAddress.transfer(payout);
+    emit ReceivedPayment(playerAddress, payout);
 
-            // Обновляем бюджет уровня и статус игрока
-            levels[level].budget -= payout;
-            player.hasReceivedPayment = true;
-            player.isWaiting = false; // Обновляем статус ожидания игрока
+    // Обновляем бюджет уровня и статус игрока
+    levels[level].budget -= payout;
+    player.isWaiting = false; // Игрок получил выплату
 
-            // Переводим игрока на следующий уровень, если достигнут максимум шагов
-            if (player.stepsCompleted >= LEVEL_STEPS[player.currentLevel]) {
-                moveToNextLevel(playerAddress);
-            }
-        } else {
-            // Выплата доступна, но не была успешной из-за недостатка средств
-            player.lastPayoutAttempt = block.timestamp;
-        }
-    } else {
-        // Выплата не доступна из-за ограничений бюджета
-        player.lastPayoutAttempt = block.timestamp;
+    // Переводим игрока на следующий уровень, если достигнут максимум шагов
+    if (player.stepsCompleted >= LEVEL_STEPS[player.currentLevel]) {
+        moveToNextLevel(playerAddress);
     }
-    }
+}
 
 
     // Function to move a player to the next level.
