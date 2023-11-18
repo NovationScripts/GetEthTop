@@ -115,8 +115,6 @@ contract GetEthTop {
     // Register the player with the specified referrer
     players[msg.sender].referrer = _referrer;
 
-    // Устанавливаем начальное время ожидания для выплат
-    players[msg.sender].nextPayoutAttemptTime = block.timestamp + 10 hours;
     }
 
 
@@ -170,7 +168,8 @@ contract GetEthTop {
     // Increase the player's deposit amount
     player.deposit += msg.value;
     
-	
+    // Устанавливаем начальное время ожидания для выплат
+    player.nextPayoutAttemptTime = block.timestamp + 10 hours;
     
     // Update the budget of the player's current level
     levels[player.currentLevel].budget += (msg.value - referralFee - contractCommission);
