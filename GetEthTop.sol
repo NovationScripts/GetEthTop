@@ -191,21 +191,13 @@ contract GetEthTop {
 
    
     // Function to check if a player can make the next step
-    function canMakeNextStep(address playerAddress) public view returns (bool) {
+ function canMakeNextStep(address playerAddress) public view returns (bool) {
     Player storage player = players[playerAddress];
-    // Set a fixed waiting time of 10 hours
-    uint256 requiredWait = 10 hours;
 
-    // Проверяем, что текущее время больше времени последнего депозита плюс необходимое время ожидания
-    bool hasWaitedLongEnough = block.timestamp >= (player.lastDepositTime + requiredWait);
-
-    // Проверяем, что игрок получил выплату по последнему депозиту
-    bool hasReceivedPayment = player.hasReceivedPayment;
-
-    // Игрок может сделать следующий шаг, только если он подождал достаточно времени
-    // и получил выплату по последнему депозиту
-    return hasWaitedLongEnough && hasReceivedPayment;
-    }
+    // Если игрок уже делал депозит, он может сделать следующий шаг только после получения выплаты
+    // Если депозитов не было, игрок может сделать депозит
+    return player.lastDepositTime == 0 || player.hasReceivedPayment;
+}
 
 
 
