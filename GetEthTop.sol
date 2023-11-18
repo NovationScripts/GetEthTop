@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Version 4.2.0
+// Version 4.3.0
+
 pragma solidity ^0.8.0;
 
 contract GetEthTop {
@@ -17,7 +18,7 @@ contract GetEthTop {
    uint256 public totalReferralEarnings = 0; // Total referral earnings
    uint256 public totalReferralWithdrawals = 0; // Total referral withdrawals
    uint256 public totalPlayerCount; // Счетчик общего числа игроков
-   
+   uint256 public payoutAttemptInterval = 10 hours;  // Значение по умолчанию
 
 	constructor() {
     owner = msg.sender; // Assign the contract creator as the owner of the contract
@@ -115,6 +116,7 @@ contract GetEthTop {
     // Register the player with the specified referrer
     players[msg.sender].referrer = _referrer;
 
+    
     }
 
 
@@ -169,8 +171,8 @@ contract GetEthTop {
     player.deposit += msg.value;
     
     // Устанавливаем начальное время ожидания для выплат
-    player.nextPayoutAttemptTime = block.timestamp + 10 hours;
-    
+    player.nextPayoutAttemptTime = block.timestamp + payoutAttemptInterval;
+
     // Update the budget of the player's current level
     levels[player.currentLevel].budget += (msg.value - referralFee - contractCommission);
     
@@ -194,13 +196,13 @@ contract GetEthTop {
 
 
     // Function to check if a player can make the next step
- function canMakeNextStep(address playerAddress) public view returns (bool) {
+    function canMakeNextStep(address playerAddress) public view returns (bool) {
     Player storage player = players[playerAddress];
 
     // Игрок может сделать следующий шаг, если он не в режиме ожидания и уже сделал хотя бы один депозит
     // Если депозитов не было, игрок может сделать первый депозит
     return player.lastDepositTime == 0 || !player.isWaiting;
-}
+    }
 
 
 
@@ -462,6 +464,11 @@ contract GetEthTop {
     function updateExternalContractAddress(address _newAddress) external onlyOwner {
         require(_newAddress != address(0), "Invalid address");
         externalContractAddress = _newAddress;
+    }
+
+    
+    function changePayoutAttemptTime(uint256 newInterval) public onlyOwner {
+    payoutAttemptInterval = newInterval;
     }
 
 
