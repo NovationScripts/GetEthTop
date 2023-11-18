@@ -11,15 +11,7 @@ New players cannot be registered without a referrer, ensuring a chain of partici
 
 **Gameplay:** 
 
-Players make deposits and complete steps (making deposits and receiving payouts 50% higher than their deposit) corresponding to their levels, with the cost of steps increasing at each subsequent level.
-
-After completing a certain number of steps, players receive a level completion reward and advance to the next level, where they can earn more.
-
-A certain percentage of each player's contribution accumulates to provide level completion rewards.
-
-Players cannot make a repeat deposit sooner than two hours after their previous deposit.
-
-Fixed waiting time of 10 hours for the next step.
+<!-- -->
 
 **Fund Redistribution:**
 
