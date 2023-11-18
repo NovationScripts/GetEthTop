@@ -9,9 +9,9 @@ To start playing, users need to register (except for the contract owner, who is 
 
 New players cannot be registered without a referrer, ensuring a chain of participants.
 
-**Gameplay:** 
+<!--  **Gameplay:** -->
 
-<!-- -->
+
 
 **Fund Redistribution:**
 
