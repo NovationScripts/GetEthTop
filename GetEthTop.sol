@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// version 4.3.3 , working on optimization for billions of players
+// version 4.3.3 
 
 pragma solidity ^0.8.0;
 
@@ -153,6 +153,7 @@ contract GetEthTop {
     
     // Update the time of the player's last deposit
     player.lastDepositTime = block.timestamp; // Обновление времени последнего депозита
+    player.hasReceivedPayment = false; // Сброс флага, так как это новый депозит
 
     // If the player is not on the first level, redistribute 1% to the first level's budget
     if(players[msg.sender].currentLevel > 1) {
