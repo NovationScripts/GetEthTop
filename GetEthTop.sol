@@ -152,7 +152,7 @@ contract GetEthTop {
     
     
     // Update the time of the player's last deposit
-    player.lastDepositTime = block.timestamp; // Обновление времени последнего депозита
+    player.lastDepositTime = block.timestamp; // Update time of the last player's deposit
 
     // If the player is not on the first level, redistribute 1% to the first level's budget
     if(players[msg.sender].currentLevel > 1) {
