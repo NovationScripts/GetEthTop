@@ -226,8 +226,8 @@ contract GetEthTop {
     }
 
 
-    // Before requesting a payout, a player can check his level's budget for free to see if the payout is available through the viwe function
-
+    // Before requesting a payout, a player can check his level's budget for free to see if the payout is available through the viwe function 
+    // const isAvailable = await contract.methods.isPayoutAvailableFor(playerAddress).call(); or  function getBudgetsByLevel
     function requestPayout() external canRequestPayout {
     Player storage player = players[msg.sender];
     uint256 level = player.currentLevel;
