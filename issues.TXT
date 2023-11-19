@@ -1,6 +1,6 @@
 1. Bug fixing in the code
-2. Code optimization and improvement
-3. Gas optimization
+2. Code optimization and improvement (for billions of players)
+3. Gas optimization (for billions of players)
 4. SafeMath
 5. Reentrancy protection, security
 
