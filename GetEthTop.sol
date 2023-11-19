@@ -18,7 +18,7 @@ contract GetEthTop {
    uint256 public totalReferralEarnings = 0; // Total referral earnings
    uint256 public totalReferralWithdrawals = 0; // Total referral withdrawals
    uint256 public totalPlayerCount; // Total number of players counter
-   uint256 public payoutAttemptInterval = 10 hours;  // Default value (24-55 hours) could be reduset by admin if budget rising to fast
+   uint256 public payoutAttemptInterval = 10 hours;  // Default value (24-55 hours) could be redused by admin if budget rising to fast
 
 	constructor() {
     owner = msg.sender; // Assign the contract creator as the owner of the contract
