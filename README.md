@@ -9,7 +9,7 @@ To start playing, users need to register (except for the contract owner, who is 
 
 New players cannot be registered without a referrer, ensuring a chain of participants.
 
-<!--  **Gameplay:** -->
+<!--  **Gameplay:**
 
 
 
@@ -39,7 +39,7 @@ Players can request payouts under certain conditions, such as when their current
 
 Players can also earn additional rewards in the form of liquid tokens in another contract for completing levels.
 
-To maintain optimal liquidity and ensure the stability of the reward system, earnings from the game contract are directed to the token contract address. This ensures that the amount of rewards is commensurate with and does not exceed the total earnings of the game contract, thereby providing a balanced and sustainable economic mechanism.
+To maintain optimal liquidity and ensure the stability of the reward system, earnings from the game contract are directed to the token contract address. This ensures that the amount of rewards is commensurate with and does not exceed the total earnings of the game contract, thereby providing a balanced and sustainable economic mechanism.  -->
 
 **Game Objective:** 
 
