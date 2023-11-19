@@ -17,8 +17,8 @@ contract GetEthTop {
    address public externalContractAddress; // External Contract Address
    uint256 public totalReferralEarnings = 0; // Total referral earnings
    uint256 public totalReferralWithdrawals = 0; // Total referral withdrawals
-   uint256 public totalPlayerCount; // Счетчик общего числа игроков
-   uint256 public payoutAttemptInterval = 10 hours;  // Значение по умолчанию
+   uint256 public totalPlayerCount; // Total number of players counter
+   uint256 public payoutAttemptInterval = 10 hours;  // Default value
 
 	constructor() {
     owner = msg.sender; // Assign the contract creator as the owner of the contract
@@ -60,8 +60,8 @@ contract GetEthTop {
     uint256 stepsCompleted;  // Number of steps completed by the player
     bool hasFinished; // Flag to track whether the player has finished the game
     uint256 referralWithdrawals; // Variable added to track the total amount of withdrawals made by referrals
-    uint256 lastDepositTime; // Время последнего депозита игрока;
-    uint256 nextPayoutAttemptTime;
+    uint256 lastDepositTime; // Time of the player's last deposit;
+    uint256 nextPayoutAttemptTime; // Time of the player's next payout attempt
     }
 	
 
@@ -170,7 +170,7 @@ contract GetEthTop {
     // Increase the player's deposit amount
     player.deposit += msg.value;
     
-    // Устанавливаем начальное время ожидания для выплат
+    // Set the initial waiting time for payments
     player.nextPayoutAttemptTime = block.timestamp + payoutAttemptInterval;
 
     // Update the budget of the player's current level
@@ -199,8 +199,8 @@ contract GetEthTop {
     function canMakeNextStep(address playerAddress) public view returns (bool) {
     Player storage player = players[playerAddress];
 
-    // Игрок может сделать следующий шаг, если он не в режиме ожидания и уже сделал хотя бы один депозит
-    // Если депозитов не было, игрок может сделать первый депозит
+     // The player can take the next step if he is not in standby mode and has already made at least one deposit
+     // If there were no deposits, the player can make the first deposit
     return player.lastDepositTime == 0 || !player.isWaiting;
     }
 
@@ -216,29 +216,29 @@ contract GetEthTop {
     Player storage player = players[playerAddress];
     Level storage currentLevel = levels[player.currentLevel];
     
-    // Проверяем, достаточно ли средств в бюджете уровня
+    // Checking whether there are enough funds in the level budget
     bool isBudgetAvailable = currentLevel.budget >= player.deposit * PAYOUT_MULTIPLIER / 100;
 
-    // Проверяем, прошло ли установленное время ожидания с последней попытки выплаты
+    // Check whether the set waiting time has passed since the last payment attempt
     bool isTimeElapsed = block.timestamp >= player.nextPayoutAttemptTime;
 
     return isBudgetAvailable && isTimeElapsed;
     }
 
 
-
+    // Before requesting a payout, a player can check his level's budget for free to see if the payout is available through the viwe function
 
     function requestPayout() external canRequestPayout {
     Player storage player = players[msg.sender];
     uint256 level = player.currentLevel;
     
     if (!isPayoutAvailableFor(msg.sender)) {
-        // Неудачная попытка выплаты, обновляем время ожидания
+        // Payment attempt failed, update the waiting time
         reduceWaitingTime(player);
-        return; // Прерываем функцию, если выплата не доступна
+        return; // Cancell the function if the payout is not available
     }
 
-    // Если выплата доступна, продолжаем процесс выплаты
+    // If payment is available, continue the payment process
     processPayments(level);
     }
 
@@ -258,15 +258,15 @@ contract GetEthTop {
 
     uint256 payout = player.deposit * PAYOUT_MULTIPLIER / 100;
 
-    // Выполняем выплату
+    // Make the payment
     playerAddress.transfer(payout);
     emit ReceivedPayment(playerAddress, payout);
 
-    // Обновляем бюджет уровня и статус игрока
+    // Update the level budget and player status
     levels[level].budget -= payout;
-    player.isWaiting = false; // Игрок получил выплату
+    player.isWaiting = false; // The player received a payment
 
-    // Переводим игрока на следующий уровень, если достигнут максимум шагов
+    // The player moves to the next level if the maximum steps are reached
     if (player.stepsCompleted >= LEVEL_STEPS[player.currentLevel]) {
         moveToNextLevel(playerAddress);
     }
