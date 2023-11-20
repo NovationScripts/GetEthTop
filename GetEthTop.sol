@@ -132,11 +132,6 @@ contract GetEthTop {
     levels[player.currentLevel].budget += msg.value;
     // Ensure the sent value matches the step cost for the current level.
     require(msg.value == STEP_COSTS[player.currentLevel], "Incorrect step cost sent");
-
-    // Increment the number of steps completed by the player.
-    player.stepsCompleted++;
-    
-    
     }
     
 
@@ -266,6 +261,9 @@ contract GetEthTop {
     levels[level].budget -= payout;
     player.isWaiting = false; // The player received a payment
 
+     // Increment the number of steps completed by the player.
+    player.stepsCompleted++;
+    
     // The player moves to the next level if the maximum steps are reached
     if (player.stepsCompleted >= LEVEL_STEPS[player.currentLevel]) {
         moveToNextLevel(playerAddress);
@@ -413,17 +411,7 @@ contract GetEthTop {
     return players[referrer].referralWithdrawals;
     }
 
-    // Function to calculate the player's profit
-    function getPlayerProfit(address playerAddress) external view returns (int256) {
-    // Retrieve the player's data from the mapping
-    Player storage player = players[playerAddress];
-    
-    // Calculate the difference between the total payouts to the player and their deposit
-    int256 profit = int256(totalPayouts[playerAddress]) - int256(player.deposit);
 
-    // Return the calculated profit
-    return profit;
-    }
     
     // Function for donations to the first level
     function donateToFirstLevel() public payable {
