@@ -9,35 +9,57 @@ To start playing, users need to register (except for the contract owner, who is 
 
 New players cannot be registered without a referrer, ensuring a chain of participants.
 
-<!--  **Gameplay:**
+  **Gameplay:**
+
+This game is for people! For those who don't understand mathematics and liquidity well. Let's clarify, this is not a Ponzi scheme; it's a redistribution of funds. We don't take away; we give. The earnings of the contract will be redirected to the initial liquidity of the token, which will be awarded for completing levels. These tokens can be automatically and decentrally exchanged for liquid cryptocurrency. We're not just creating initial liquidity for our token but also providing an opportunity for everyone to attain prosperity through the gaming process. The main goal of the game process is to attract new players to maintain the stability of the game.
+
+1. The contract owner is the first registered referrer.
+
+2. To register, players must specify a referrer.
+
+3. A referrer can start accumulating profit from each referral's deposit on each level, only if the referrer completes 10 steps on the first level.
+
+4. There are levels in the game, each level has its own budget, and each level has a fixed number of steps, where each step involves making a deposit and receiving a payout.
+
+5. When a player makes a deposit, a portion of the funds is distributed among the referrer, the contract's earnings, and the level's budget.
+
+6. A player can request a payout only after the default waiting time from the moment of the last deposit has passed. Before requesting a payout, a player can check for free whether the payout is available at their level, and also check the state of the budget at their level. In case of a failed payout attempt, the player will face a waiting time again, which will decrease by one hour after each failed payout attempt.
+
+<i>Recommendations: Check the budget status of your level and do not request a payout if the budget of your level does not cover your payout several times, this ensures that you are more likely to receive the payout the first time and will not need to pay gas for a failed payout attempt, as well as getting additional waiting time. Invite new referrals to the game this will help increase the budgets of levels, as well as bring you additional profit.</i>
+
+7. After receiving a payout for the last deposit, the number of steps a player has completed on the current level increases, after completing all the steps on the current level, the player moves to the next level. After a player moves to the next level, they cannot make steps on the previous level. After completing the last level, the player's status changes to "finished the game" and the player cannot start the game again from the same wallet.
+
+8. A player can take the next step on the current level only after receiving a payout for the last deposit.
+
+9. The game includes rewards for completing levels, which are implemented in a separate contract. These rewards entail receiving liquid tokens, which can be decentralizedly exchanged for liquid cryptocurrency.
+
+10. When the contract owner withdraws the contract's earnings, the contract's earnings are transferred to the account of the liquid token contract used for level completion rewards.
+
+11. When the contract owner withdraws the contract's earnings, a certain percentage goes into the budget of the first level.
+
+12. When a referrer withdraws their earnings, a certain percentage of their earnings goes into the budget of the first level.
+
+13. The contract owner can change the default waiting time after the last deposit if the budget of the first level accumulates too quickly due to a constant influx of new players, or decrease the waiting time if the influx of players is too slow.
+
+14. This game implies that a player needs to spend their own money only for registration, making the first deposit, and paying for gas. After making the first deposit at the first level, a player should always be in profit in order to continue playing. Even if a player overspends a little on gas, they can make up for it with earnings from referrals and continue the game to the finish.
+
+15. With each level, the cost of a step increases, and the profit after the payout for the current step increases, making gas expenses increasingly insignificant with each new level. As each level increases, the number of steps decreases.
 
 
 
-**Fund Redistribution:**
 
-10% of each player's contribution is distributed among referrers and the contract (contract owner).
 
-Referrers earn a commission for each active referral they bring.
 
-Referrers cannot start accumulating commission unless they have completed at least 10 steps on the first level.
 
-A portion of the funds accumulates in the budget of each level, from which player rewards are paid.
 
-The contract owner receives a percentage of all transactions as a commission for managing and supporting the system.
 
-10% of the reward for completing a level (except for the first level) goes to the first level's budget.
 
-For players on each level except the first, there is an option to voluntarily contribute (any amount) to the first level's budget.
 
-When withdrawing contract earnings, the contract owner redirects 10% to the first level's budget.
 
-When referrers withdraw their earnings, 10% is redirected to the first level's budget.
 
-**Payouts and Rewards:**
 
-Players can request payouts under certain conditions, such as when their current level's budget allows it. Available payouts for players are reserved in the order of their deposits.
 
-Players can also earn additional rewards in the form of liquid tokens in another contract for completing levels.
+
 
 To maintain optimal liquidity and ensure the stability of the reward system, earnings from the game contract are directed to the token contract address. This ensures that the amount of rewards is commensurate with and does not exceed the total earnings of the game contract, thereby providing a balanced and sustainable economic mechanism.  -->
 
