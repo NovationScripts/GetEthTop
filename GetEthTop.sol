@@ -49,6 +49,8 @@ contract GetEthTop {
     ];
 	
 	
+    // Mapping of player addresses to their PlayerData
+     mapping(address => Player) public players;
 
     // Data structure for a player
     struct Player {
@@ -77,10 +79,6 @@ contract GetEthTop {
    
     }
 
-
-
-    // Mapping of player addresses to their data
-    mapping(address => Player) public players; 
 
 
 
@@ -116,6 +114,10 @@ contract GetEthTop {
     // Register the player with the specified referrer
     players[msg.sender].referrer = _referrer;
 
+    players[msg.sender].currentLevel = 0;
+    players[msg.sender].stepsCompleted = 0;
+    players[msg.sender].lastDepositTime = 0;
+    players[msg.sender].nextPayoutAttemptTime = 0;
     
     }
 
