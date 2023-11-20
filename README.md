@@ -49,7 +49,7 @@ This game is for people! For those who don't understand mathematics and liquidit
 
 17. With each level, the cost of a step increases, and the profit after the payout for the current step increases, making gas expenses increasingly insignificant with each new level.
 
-
+18. The number of levels, the number of steps for each level, and the cost of each step can be calculated and altered before the contract deployment, but in such a way that the player can continue the game and reach the finish while minimizing the budget expenditures.
 
 To maintain optimal liquidity and ensure the stability of the reward system, earnings from the game contract are directed to the token contract address. This ensures that the amount of rewards is commensurate with and does not exceed the total earnings of the game contract, thereby providing a balanced and sustainable economic mechanism.  
 
