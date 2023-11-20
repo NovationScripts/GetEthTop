@@ -47,6 +47,8 @@ This game is for people! For those who don't understand mathematics and liquidit
 
 16. With each level, the cost of a step increases, and the profit after the payout for the current step increases, making gas expenses increasingly insignificant with each new level. As each level increases, the number of steps decreases.
 
+17. Any Ethereum network user can donate to the budget of the first level, even if they are not registered in the game.
+
 To maintain optimal liquidity and ensure the stability of the reward system, earnings from the game contract are directed to the token contract address. This ensures that the amount of rewards is commensurate with and does not exceed the total earnings of the game contract, thereby providing a balanced and sustainable economic mechanism.  
 
 **Game Objective:** 
