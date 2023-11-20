@@ -51,6 +51,8 @@ This game is for people! For those who don't understand mathematics and liquidit
 
 18. The number of levels, the number of steps for each level, and the cost of each step can be calculated and altered before the contract deployment, but in such a way that the player can continue the game and reach the finish while minimizing the budget expenditures.
 
+19. The main goal of finishing is equivalent to a total player profit of $1,000,000.
+
 To maintain optimal liquidity and ensure the stability of the reward system, earnings from the game contract are directed to the token contract address. This ensures that the amount of rewards is commensurate with and does not exceed the total earnings of the game contract, thereby providing a balanced and sustainable economic mechanism.  
 
 **Game Objective:** 
