@@ -33,10 +33,9 @@ This game is for people! For those who don't understand mathematics and liquidit
 
 9. The game includes rewards for completing levels, which are implemented in a separate contract. These rewards entail receiving liquid tokens, which can be decentralizedly exchanged for liquid cryptocurrency.
 
-10. When the contract owner withdraws the contract's earnings, the contract's earnings are transferred to the account of the liquid token contract used for level completion rewards.
+10. 1% of each player's deposit at every level except the first level is transferred to the budget of the first level.
 
-11. 1% of each player's deposit at every level except the first level is transferred to the budget of the first level.
-
+11. When the contract owner withdraws the contract's earnings, the contract's earnings are transferred to the account of the liquid token contract used for level completion rewards.
 
 12. When the contract owner withdraws the contract's earnings, a certain percentage goes into the budget of the first level.
 
