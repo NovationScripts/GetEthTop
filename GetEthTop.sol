@@ -93,7 +93,7 @@ contract GetEthTop {
 
 
     // Events for logging actions in the contract
-    event Registered(address indexed player, uint256 deposit, uint256 level); // Triggered when a player registers
+    event Registered(address indexed player, address indexed referrer, uint256 level); // Triggered when a player registers // Triggered when a player registers
     event LevelUp(address indexed player, uint256 newLevel); // Triggered when a player moves up a level
     event ReceivedPayment(address indexed player, uint256 amount); // Triggered when a player receives a payment
     event DonationMade(address indexed donor, uint256 amount); // Triggered when a donation is made
@@ -121,7 +121,8 @@ contract GetEthTop {
     players[msg.sender].deposit = 0;
     players[msg.sender].referralEarnings = 0;
     players[msg.sender].referralWithdrawals = 0;
- 
+
+    emit Registered(msg.sender, _referrer, players[msg.sender].currentLevel);
     }
 
 
