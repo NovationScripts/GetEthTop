@@ -118,7 +118,10 @@ contract GetEthTop {
     players[msg.sender].stepsCompleted = 0;
     players[msg.sender].lastDepositTime = 0;
     players[msg.sender].nextPayoutAttemptTime = 0;
-    
+    players[msg.sender].deposit = 0;
+    players[msg.sender].referralEarnings = 0;
+    players[msg.sender].referralWithdrawals = 0;
+ 
     }
 
 
