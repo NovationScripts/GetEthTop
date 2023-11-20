@@ -47,7 +47,7 @@ This game is for people! For those who don't understand mathematics and liquidit
 
 16. This game implies that a player needs to spend their own money only for registration, making the first deposit, and paying for gas. After making the first deposit at the first level, a player should always be in profit in order to continue playing. Even if a player overspends a little on gas, they can make up for it with earnings from referrals and continue the game to the finish.
 
-17. With each level, the cost of a step increases, and the profit after the payout for the current step increases, making gas expenses increasingly insignificant with each new level. As each level increases, the number of steps decreases.
+17. With each level, the cost of a step increases, and the profit after the payout for the current step increases, making gas expenses increasingly insignificant with each new level.
 
 
 
