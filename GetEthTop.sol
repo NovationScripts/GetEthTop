@@ -268,7 +268,7 @@ contract GetEthTop {
     if (player.stepsCompleted >= LEVEL_STEPS[player.currentLevel]) {
         moveToNextLevel(playerAddress);
     }
-}
+    }
 
 
     // Function to move a player to the next level.
