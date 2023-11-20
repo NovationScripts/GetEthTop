@@ -417,8 +417,6 @@ contract GetEthTop {
     function donateToFirstLevel() public payable {
     // Ensure the donated amount is greater than zero
     require(msg.value > 0, "Donation must be greater than 0");
-    // Only allow players above level 1 to make a donation
-    require(players[msg.sender].currentLevel > 1, "Only players above level 1 can donate");
 
     // Add the donation amount to the budget of the first level
     // Index 1 is used because level numbering starts from 1
