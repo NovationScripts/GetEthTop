@@ -35,15 +35,18 @@ This game is for people! For those who don't understand mathematics and liquidit
 
 10. When the contract owner withdraws the contract's earnings, the contract's earnings are transferred to the account of the liquid token contract used for level completion rewards.
 
-11. When the contract owner withdraws the contract's earnings, a certain percentage goes into the budget of the first level.
+11. 1% of each player's deposit at every level except the first level is transferred to the budget of the first level.
 
-12. When a referrer withdraws their earnings, a certain percentage of their earnings goes into the budget of the first level.
 
-13. The contract owner can change the default waiting time after the last deposit if the budget of the first level accumulates too quickly due to a constant influx of new players, or decrease the waiting time if the influx of players is too slow.
+12. When the contract owner withdraws the contract's earnings, a certain percentage goes into the budget of the first level.
 
-14. This game implies that a player needs to spend their own money only for registration, making the first deposit, and paying for gas. After making the first deposit at the first level, a player should always be in profit in order to continue playing. Even if a player overspends a little on gas, they can make up for it with earnings from referrals and continue the game to the finish.
+13. When a referrer withdraws their earnings, a certain percentage of their earnings goes into the budget of the first level.
 
-15. With each level, the cost of a step increases, and the profit after the payout for the current step increases, making gas expenses increasingly insignificant with each new level. As each level increases, the number of steps decreases.
+14. The contract owner can change the default waiting time after the last deposit if the budget of the first level accumulates too quickly due to a constant influx of new players, or decrease the waiting time if the influx of players is too slow.
+
+15. This game implies that a player needs to spend their own money only for registration, making the first deposit, and paying for gas. After making the first deposit at the first level, a player should always be in profit in order to continue playing. Even if a player overspends a little on gas, they can make up for it with earnings from referrals and continue the game to the finish.
+
+16. With each level, the cost of a step increases, and the profit after the payout for the current step increases, making gas expenses increasingly insignificant with each new level. As each level increases, the number of steps decreases.
 
 To maintain optimal liquidity and ensure the stability of the reward system, earnings from the game contract are directed to the token contract address. This ensures that the amount of rewards is commensurate with and does not exceed the total earnings of the game contract, thereby providing a balanced and sustainable economic mechanism.  
 
