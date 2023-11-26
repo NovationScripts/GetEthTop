@@ -147,5 +147,7 @@ Help us reach a wider audience by sharing about our project within your network.
 If you're interested in collaborating, please reach out to us here on GitHub or via our contact email.
 For general inquiries and suggestions, feel free to open an issue or start a discussion in this repository.
 Together, we can take GetEthTop to new heights and create an experience that is truly unique and rewarding. We value every contribution and are excited to see where this journey takes us. Thank you for your interest and support!
+
 https://geteth.top
+
 getethtop@gmail.com
