@@ -58,24 +58,26 @@ contract GetEthTopAdditionalReward {
         rewardToken = IERC20Mintable(_newRewardTokenAddress); // Update the reward token address.
     }
     
-    // Function for players to claim their rewards.
+     // Function for players to claim their rewards.
     function claimRewards() public {
-    (uint256 currentLevel,,) = gameContract.getPlayerInfo(msg.sender); // Get the current level of the player from the game contract.
+    (uint256 currentLevel, , bool hasFinished) = gameContract.getPlayerInfo(msg.sender); // Get the current level and finished status of the player from the game contract.
 
-    require(currentLevel > lastClaimedLevel[msg.sender], "No new levels completed"); // Check if the player has completed new levels.
+    require(currentLevel > lastClaimedLevel[msg.sender] || (currentLevel == lastClaimedLevel[msg.sender] && hasFinished), "No new levels completed or final level not finished"); // Check if the player has completed new levels or finished the final level.
 
     uint256 totalReward = 0;
     for (uint256 i = lastClaimedLevel[msg.sender] + 1; i <= currentLevel; i++) {
         totalReward += levelRewards[i - 1]; // Calculate total reward for all completed levels.
     }
 
+    if (hasFinished && currentLevel == lastClaimedLevel[msg.sender]) {
+        totalReward += levelRewards[currentLevel - 1]; // Include reward for the final level if it's finished and was not previously claimed.
+    }
+
     lastClaimedLevel[msg.sender] = currentLevel; // Update the last claimed level for the player.
 
-    
     require(rewardToken.mint(msg.sender, totalReward), "Failed to mint rewards"); // Mint the reward for the player.
-   
+
     emit RewardsClaimed(msg.sender, totalReward); // Emit the reward claimed event.
-   
     }
 
 }
