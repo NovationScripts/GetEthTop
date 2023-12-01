@@ -157,6 +157,10 @@ We would like to emphasize that token rewards are not guaranteed and will be con
 If you are interested in participating and would like to learn more, please contact us. We are always open to new ideas and suggestions, and appreciate your interest in our project.
 
 
+**A Token Reflecting the Uniqueness of Our Game**
+
+We aim to ensure that our token reflects the uniqueness and special qualities of the game we have developed and showcased in our repository on GitHub. Our team is dedicated to applying the same level of attention to detail, innovation, and quality in the development of our token as in the creation of our game. We believe these efforts will establish our token as a valuable asset within the blockchain ecosystem and bring significant benefits to our community.
+
 **Connect with Us:**
 
 If you're interested in collaborating, please reach out to us here on GitHub or via our contact email.
