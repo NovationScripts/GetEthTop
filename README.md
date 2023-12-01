@@ -134,6 +134,10 @@ We value everyone who shares our passion and vision. If you like this project an
 
 Every contribution inspires us and is a vivid testament that we are moving in the right direction. Thank you for your support and belief in our project!
 
+**Support for the Project and Potential Token Rewards**
+
+We are grateful for any support to our project through donations. While we cannot offer guaranteed rewards, we value each contribution and plan to take into account the wallets from which transfers were made when our token is implemented. Your support is important to us, and we aim to acknowledge it when the opportunity to provide rewards arises. Please note that all donations are considered voluntary contributions to support and develop the project, and a refund of funds is not envisaged.
+
 **Collaboration and Support Welcome**
 
 We at GetEthTop are passionate about exploring innovative ideas in the blockchain space. Our project is a testament to this commitment, and we believe in the power of collaboration to drive growth and success.
