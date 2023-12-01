@@ -142,6 +142,21 @@ Share your creative ideas and perspectives on how to make GetEthTop even more en
 
 Help us reach a wider audience by sharing about our project within your network.
 
+**Collaboration and Reward Opportunities**
+
+We value each contribution to our project's development and are committed to building a strong, trustworthy community of developers and contributors. As part of our appreciation for your participation, we offer the possibility of rewards in the form of minting our future token. The amount and terms of token distribution will depend on the following factors:
+
+-  The depth and significance of your contribution to the project.
+
+-  The duration and quality of the collaboration.
+
+-  The level of trust and engagement within the project.
+
+We would like to emphasize that token rewards are not guaranteed and will be considered on an individual basis, taking into account the criteria mentioned above. Our goal is to treat each participant fairly and encourage meaningful contributions to our project.
+
+If you are interested in participating and would like to learn more, please contact us. We are always open to new ideas and suggestions, and appreciate your interest in our project.
+
+
 **Connect with Us:**
 
 If you're interested in collaborating, please reach out to us here on GitHub or via our contact email.
