@@ -130,7 +130,7 @@ In conclusion, GetEthTop shows promise as an engaging blockchain game that combi
 
 We value everyone who shares our passion and vision. If you like this project and the ideas behind it, your support can be a powerful catalyst for development and realization of new creative concepts.
 
-**Ethereum:   0xf2964D4ddaC1bDf3950550f03Be1EdAB49643cb9**
+**Ethereum:   0x2312c1c18E0Acd64F69d149988E05A78001474E5**
 
 Every contribution inspires us and is a vivid testament that we are moving in the right direction. Thank you for your support and belief in our project!
 
