@@ -43,7 +43,7 @@ This game is for people! For those who don't understand mathematics and liquidit
 
 14. When a referrer withdraws their earnings, a certain percentage of their earnings goes into the budget of the first level.
 
-15. The contract owner can change the default waiting time after the last deposit if the budget of the first level accumulates too quickly due to a constant influx of new players, or decrease the waiting time if the influx of players is too slow.
+15. The contract owner can change the default waiting time after the last deposit if the budget of the first level accumulates too quickly due to a constant influx of new players, or increase the waiting time if the influx of players is too slow.
 
 16. This game implies that a player needs to spend their own money only for registration, making the first deposit, and paying for gas. After making the first deposit at the first level, a player should always be in profit in order to continue playing. Even if a player overspends a little on gas, they can make up for it with earnings from referrals and continue the game to the finish.
 
