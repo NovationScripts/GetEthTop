@@ -53,6 +53,18 @@ This game is for people! For those who don't understand mathematics and liquidit
 
 19. The main goal of finishing is equivalent to a total player profit of $1,000,000.
 
+20. LEVEL_STEPS = [12, 10, 9, 8, 7, 5, 2];  Steps required for each level
+
+    Step cost on each level in ether
+    0.02 ether,  // Cost of a step on level 1
+    0.125 ether,   // Cost of a step on level 2
+    0.735 ether,   // Cost of a step on level 3
+    4 ether,     // Cost of a step on level 4
+    19 ether,     // Cost of a step on level 5
+    78 ether,     // Cost of a step on level 6
+    267 ether    // Cost of a step on level 7
+   
+
 To maintain optimal liquidity and ensure the stability of the reward system, earnings from the game contract are directed to the token contract address. This ensures that the amount of rewards is commensurate with and does not exceed the total earnings of the game contract, thereby providing a balanced and sustainable economic mechanism.  
 
 **Game Objective:** 
