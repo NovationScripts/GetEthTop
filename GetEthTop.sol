@@ -29,23 +29,19 @@ contract GetEthTop {
 
 
 
-    uint256[] LEVEL_STEPS = [30, 15, 4, 4, 4, 3, 3, 4, 3, 2, 5]; // Steps required for each level
+    uint256[] LEVEL_STEPS = [12, 10, 9, 8, 7, 5, 2]; // Steps required for each level
 
 
 
     // Step cost on each level in ether
     uint256[] public STEP_COSTS = [
-    0.01 ether,  // Cost of a step on level 1
-    0.1 ether,   // Cost of a step on level 2
-    0.5 ether,   // Cost of a step on level 3
-    1 ether,     // Cost of a step on level 4
-    2 ether,     // Cost of a step on level 5
-    5 ether,     // Cost of a step on level 6
-    10 ether,    // Cost of a step on level 7
-    20 ether,    // Cost of a step on level 8
-    50 ether,    // Cost of a step on level 9
-    100 ether,   // Cost of a step on level 10
-    150 ether   // Cost of a step on level 11
+    0.02 ether,  // Cost of a step on level 1
+    0.125 ether,   // Cost of a step on level 2
+    0.735 ether,   // Cost of a step on level 3
+    4 ether,     // Cost of a step on level 4
+    19 ether,     // Cost of a step on level 5
+    78 ether,     // Cost of a step on level 6
+    267 ether    // Cost of a step on level 7
     ];
 	
 	
@@ -83,7 +79,7 @@ contract GetEthTop {
 
 
     // Array representing data for each level in the game
-    Level[11] public levels; 
+    Level[7] public levels; 
 
 
 
@@ -282,8 +278,8 @@ contract GetEthTop {
     // Retrieve player information from the storage.
     Player storage player = players[playerAddress];
     
-    // Check if the player has reached the final level (11th).
-    if (player.currentLevel == 11) {
+    // Check if the player has reached the final level (7th).
+    if (player.currentLevel == 7) {
         // Mark the player as having finished the game.
         player.hasFinished = true;
         // Exit the function as the player has completed the game.
@@ -346,8 +342,8 @@ contract GetEthTop {
     function getCurrentLevelData() external view returns(Level memory) {
     // Retrieve player data from storage.
     Player storage player = players[msg.sender];
-    // Check that the player's current level is valid (between 1 and 11).
-    require(player.currentLevel > 0 && player.currentLevel <= 11, "Invalid level");
+    // Check that the player's current level is valid (between 1 and 7).
+    require(player.currentLevel > 0 && player.currentLevel <= 7, "Invalid level");
     // Return level data for the player's current level.
     return levels[player.currentLevel];
     }
