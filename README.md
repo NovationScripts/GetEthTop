@@ -56,12 +56,19 @@ This game is for people! For those who don't understand mathematics and liquidit
 20. LEVEL_STEPS = [12, 10, 9, 8, 7, 5, 2];  Steps required for each level
 
     Step cost on each level in ether
+    
     0.02 ether,  // Cost of a step on level 1
+    
     0.125 ether,   // Cost of a step on level 2
+    
     0.735 ether,   // Cost of a step on level 3
+    
     4 ether,     // Cost of a step on level 4
+    
     19 ether,     // Cost of a step on level 5
+    
     78 ether,     // Cost of a step on level 6
+    
     267 ether    // Cost of a step on level 7
    
 
