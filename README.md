@@ -11,6 +11,8 @@ New players cannot be registered without a referrer, ensuring a chain of partici
 
   **Gameplay:**
 
+  <i>We understand that at first glance, "GetEthTop" might seem a bit complex despite its simplicity, and might even evoke a degree of skepticism due to negative experiences associated with pyramid schemes. However, we encourage you to delve into the code of our smart contract, where each function and line is thoroughly commented. Even if you are not a programmer, this detailed exploration will amaze you with the game's possibilities and the prospects it offers for players. Our transparent approach aims to build trust and understanding, showcasing the unique, fair, and engaging nature of our game.</i>
+
 This game is for people! For those who don't understand mathematics and liquidity well, let's clarify: this is not a Ponzi scheme; it's a redistribution of funds. We don't take away; We provide opportunities. The earnings of the contract will be redirected to the initial liquidity of the token, which will be awarded for completing levels. These tokens can be automatically and decentrally exchanged for liquid cryptocurrency. We're not just creating initial liquidity for our token but also providing an opportunity for everyone to attain prosperity through the gaming process. The main goal of the game process is to attract new players to maintain the stability of the game.
 
 1. The contract owner is the first registered referrer.
