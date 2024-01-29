@@ -81,6 +81,10 @@ To maintain optimal liquidity and ensure the stability of the reward system, ear
 The main goal of the game is to complete all levels, maximizing earnings and potentially achieving millionaire status (~$).
 The game offers an engaging and profitable way to earn in the cryptocurrency world, combining elements of strategy, luck, and social networking.
 
+Core Gameplay Mechanics: Rewarding Deposits and Level Advancement
+
+At the heart of "GetEthTop" lies a distinctive gameplay mechanic: after each deposit, players receive a 50% payout, which, when combined with the accumulation of funds in their own wallets, facilitates progression to the next levels. Upon completion of the game, a player's wallet will contain just over 500 ETH. If a player chooses to stop playing at any point, it is not detrimental; it merely conserves the game's budget for other players. Additionally, the creation of multi-accounts by players is not considered harmful, as each account participates in the game as a separate entity, contributing to the overall dynamics and economy of the game.
+
 Accelerated Progress: Designed for Rapid Completion
 "GetEthTop" is uniquely designed to enable players to progress quickly through various levels. The game focuses on providing each participant the opportunity to reach the end goal in the shortest possible time, while offering an exciting and dynamic gameplay experience.
 
@@ -117,7 +121,7 @@ We believe that the success of our project will enhance the capabilities and pop
 
 **Initial Deposit and Referral Activity**
 
-The primary risk in the GetEthTop game is associated with the initial deposit of 0.01 ETH. This is the only amount that players need to invest from their own funds. All subsequent steps in the game and progression through the levels are funded by the profits earned during the gameplay.
+The primary risk in the GetEthTop game is associated with the initial deposit of 0.02 ETH. This is the only amount that players need to invest from their own funds. All subsequent steps in the game and progression through the levels are funded by the profits earned during the gameplay.
 
 A key factor in a player's success is the active recruitment of new participants. The effectiveness of the referral system and a player’s ability to expand their network directly influence their potential earnings and progression through the levels. It's important to note that the game involves a degree of social interaction and network marketing, which can be both an advantage and a challenge, depending on individual skills and preferences.
 
