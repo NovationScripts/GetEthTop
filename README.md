@@ -81,12 +81,13 @@ To maintain optimal liquidity and ensure the stability of the reward system, ear
 The main goal of the game is to complete all levels, maximizing earnings and potentially achieving millionaire status (~$).
 The game offers an engaging and profitable way to earn in the cryptocurrency world, combining elements of strategy, luck, and social networking.
 
-Core Gameplay Mechanics: Rewarding Deposits and Level Advancement
+**Core Gameplay Mechanics: Rewarding Deposits and Level Advancement**
 
 At the heart of "GetEthTop" lies a distinctive gameplay mechanic: after each deposit, players receive a 50% payout, which, when combined with the accumulation of funds in their own wallets, facilitates progression to the next levels. Upon completion of the game, a player's wallet will contain just over 500 ETH. If a player chooses to stop playing at any point, it is not detrimental; it merely conserves the game's budget for other players. Additionally, the creation of multi-accounts by players is not considered harmful, as each account participates in the game as a separate entity, contributing to the overall dynamics and economy of the game.
 
-Accelerated Progress: Designed for Rapid Completion
-"GetEthTop" is uniquely designed to enable players to progress quickly through various levels. The game focuses on providing each participant the opportunity to reach the end goal in the shortest possible time, while offering an exciting and dynamic gameplay experience.
+**Accelerated Progress: Designed for Rapid Completion**
+
+"**GetEthTop**" is uniquely designed to enable players to progress quickly through various levels. The game focuses on providing each participant the opportunity to reach the end goal in the shortest possible time, while offering an exciting and dynamic gameplay experience.
 
 **Key Features:**
 
