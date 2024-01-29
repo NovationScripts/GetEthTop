@@ -85,6 +85,8 @@ The game offers an engaging and profitable way to earn in the cryptocurrency wor
 
 At the heart of "GetEthTop" lies a distinctive gameplay mechanic: after each deposit, players receive a 150% payout, which, when combined with the accumulation of funds in their own wallets, allows progression to the next levels. An integral aspect of our game's ecosystem is the contribution each player makes to the budget of the first level. Every player who completes the game, over the course of their entire gameplay, replenishes the first level's budget with an amount that significantly exceeds the total sum they received in payouts at that initial stage. This system ensures a balanced and sustainable economic model, encouraging continuous engagement and progression. Upon completion of the game, a player's wallet will contain just over 500 ETH.
 
+<i>If a player chooses to stop playing at any point, it is not detrimental; it merely conserves the game's budget for other players. Additionally, the creation of multi-accounts by players is not considered harmful, as each account participates in the game as a separate entity, contributing to the overall dynamics and economy of the game.</i>
+
 **Accelerated Progress: Designed for Rapid Completion**
 
 "**GetEthTop**" is uniquely designed to enable players to progress quickly through various levels. The game focuses on providing each participant the opportunity to reach the end goal in the shortest possible time, while offering an exciting and dynamic gameplay experience.
