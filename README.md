@@ -1,7 +1,7 @@
 **GetEthTop: Path to Million Dollar Wealth and Additional ERC-20 Token Rewards.**
 
 **Overview:** 
-"**GetEthTop**" is a blockchain game designed to provide users with the opportunity to become millionaires (~$) and earn liquid ERC-20 tokens by progressing through levels (7 levels in total). Players can engage in a unique reward system, earning income from referrals and advancing through a series of increasingly challenging levels. Once the game is completed, it cannot be restarted from the same wallet.
+"**GetEthTop**" is a blockchain game designed to provide users with the opportunity to become millionaires (~$) and earn liquid ERC-20 tokens by progressing through levels (7 levels. There are a total of 53 steps in the game, plus registration.). Players can engage in a unique reward system, earning income from referrals and advancing through a series of increasingly challenging levels. Once the game is completed, it cannot be restarted from the same wallet.
 
 **Registration and Conditions:** 
 
