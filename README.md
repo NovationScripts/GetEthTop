@@ -213,6 +213,10 @@ Share your creative ideas and perspectives on how to make GetEthTop even more en
 
 Help us reach a wider audience by sharing about our project within your network.
 
+<p align="center">
+  <img src="https://pbs.twimg.com/media/GFFCR4jWcAAh2B0?format=jpg&name=large" alt="GetEthTop">
+</p>
+
 **Collaboration and Reward Opportunities**
 
 We value each contribution to our project's development and are committed to building a strong, trustworthy community of developers and contributors. As part of our appreciation for your participation, we offer the possibility of rewards in the form of minting our future token. The amount and terms of token distribution will depend on the following factors:
