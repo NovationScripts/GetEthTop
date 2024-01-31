@@ -30,17 +30,17 @@ contract GetEthTop {
 
     uint256[] LEVEL_STEPS = [12, 10, 9, 8, 7, 5, 2]; // Steps required for each level
 
-
+    // Calculations were made based on the assumption that the gas cost is 0.001 per transaction. However, it should be noted that the exact amount of gas may vary, and is currently unknown. Therefore, if it turns out that the gas cost is higher, the cost of steps in the game will be recalculated and adjusted accordingly.
 
     // Step cost on each level in ether
     uint256[] public STEP_COSTS = [
     0.02 ether,  // Cost of a step on level 1
-    0.125 ether,   // Cost of a step on level 2
-    0.735 ether,   // Cost of a step on level 3
-    4 ether,     // Cost of a step on level 4
-    19 ether,     // Cost of a step on level 5
-    78 ether,     // Cost of a step on level 6
-    267 ether    // Cost of a step on level 7
+    0.115 ether,   // Cost of a step on level 2
+    3.667 ether,   // Cost of a step on level 3
+    3.65 ether,     // Cost of a step on level 4
+    18.319 ether,     // Cost of a step on level 5
+    82.4215 ether,     // Cost of a step on level 6
+    212 ether    // Cost of a step on level 7
     ];
 	
 	
