@@ -36,8 +36,8 @@ contract GetEthTop {
     uint256[] public STEP_COSTS = [
     0.02 ether,  // Cost of a step on level 1
     0.115 ether,   // Cost of a step on level 2
-    3.667 ether,   // Cost of a step on level 3
-    3.65 ether,     // Cost of a step on level 4
+    0.67 ether,   // Cost of a step on level 3
+    3.667 ether,     // Cost of a step on level 4
     18.319 ether,     // Cost of a step on level 5
     82.4215 ether,     // Cost of a step on level 6
     212 ether    // Cost of a step on level 7
