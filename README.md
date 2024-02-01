@@ -70,17 +70,17 @@ This game is for people! For those who don't understand mathematics and liquidit
     
     0.02 ether,  // Cost of a step on level 1
     
-    0.125 ether,   // Cost of a step on level 2
+    0.115 ether,   // Cost of a step on level 2
     
-    0.735 ether,   // Cost of a step on level 3
+    0.67 ether,   // Cost of a step on level 3
     
-    4 ether,     // Cost of a step on level 4
+    3.667 ether,     // Cost of a step on level 4
     
-    19 ether,     // Cost of a step on level 5
+    18.319 ether,     // Cost of a step on level 5
     
-    78 ether,     // Cost of a step on level 6
+    82.4215 ether,     // Cost of a step on level 6
     
-    267 ether    // Cost of a step on level 7
+    212 ether    // Cost of a step on level 7
    
 
 To maintain optimal liquidity and ensure the stability of the reward system, earnings from the game contract are directed to the token contract address. This ensures that the amount of rewards is commensurate with and does not exceed the total earnings of the game contract, thereby providing a balanced and sustainable economic mechanism.  
