@@ -234,6 +234,8 @@ If you are interested in participating and would like to learn more, please cont
 
 **A Token Reflecting the Uniqueness of Our Game**
 
+A key feature of 'GetEthTop' is the unique token awarded for level completion, whose value and uniqueness enhance the game.
+
 We aim to ensure that our token reflects the uniqueness and special qualities of the game we have developed and showcased in our repository on GitHub. Our team is dedicated to applying the same level of attention to detail, innovation, and quality in the development of our token as in the creation of our game. We believe these efforts will establish our token as a valuable asset within the blockchain ecosystem and bring significant benefits to our community. As we continue to develop and refine our project, we anticipate that it may spark considerable interest and demand, even without this game.
 
 
