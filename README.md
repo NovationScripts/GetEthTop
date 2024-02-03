@@ -1,8 +1,5 @@
-<p align="center">
+
   <img src="https://pbs.twimg.com/media/GEhOeqlWsAAGKT2?format=jpg&name=large" alt="GetEthTop">
-</p>
-
-
 
 
 **GetEthTop: Path to Million Dollar Wealth and Additional ERC-20 Token Rewards.**
@@ -93,10 +90,6 @@ To maintain optimal liquidity and ensure the stability of the reward system, ear
 
 The main goal of the game is to complete all levels, maximizing earnings and potentially achieving millionaire status (~$).
 The game offers an engaging and profitable way to earn in the cryptocurrency world, combining elements of strategy, luck, and social networking.
-
-<p align="center">
-  <img src="https://pbs.twimg.com/media/GFEbGlSXEAAZFVG?format=jpg&name=large" alt="GetEthTop">
-</p>
 
 **Core Gameplay Mechanics: Rewarding Deposits and Level Advancement**
 
@@ -214,10 +207,6 @@ Share your creative ideas and perspectives on how to make GetEthTop even more en
 **Spread the Word:**
 
 Help us reach a wider audience by sharing about our project within your network.
-
-<p align="center">
-  <img src="https://pbs.twimg.com/media/GFFCR4jWcAAh2B0?format=jpg&name=large" alt="GetEthTop">
-</p>
 
 **Collaboration and Reward Opportunities**
 
