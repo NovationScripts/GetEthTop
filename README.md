@@ -22,6 +22,8 @@ New players cannot be registered without a referrer, ensuring a chain of partici
 
  **Unlike traditional financial pyramids, where the earliest participants often reap the greatest rewards with the least effort, "GetEthTop" flips this paradigm. In our game, the initial players face the greatest challenge. This is due to our unique gameplay structure where players at higher levels actively propel those at the very first level forward, and consequently, all subsequent levels as well. This means that as the first level progresses more swiftly, the momentum is passed upwards, accelerating the advancement of the following levels. This innovative approach ensures a more balanced and fair experience for all players, regardless of when they join the game.**
 
+ **Separate Queues for Each Level**: In the game "GetEthTop," a distinctive feature is the allocation of a separate budget for each level, leading to the formation of individual waiting queues for participants of each level. This ensures that the distribution of rewards is fair and in accordance with the budgetary constraints of each level, providing a clear structure and strategic depth to the gameplay.
+
 This game is for people! For those who don't understand mathematics and liquidity well, let's clarify: this is not a Ponzi scheme; it's a redistribution of funds. We don't take away; We provide opportunities. The earnings of the contract will be redirected to the initial liquidity of the token, which will be awarded for completing levels. These tokens can be automatically and decentrally exchanged for liquid cryptocurrency. We're not just creating initial liquidity for our token but also providing an opportunity for everyone to attain prosperity through the gaming process. The main goal of the game process is to attract new players to maintain the stability of the game.
 
 1. The contract owner is the first registered referrer.
@@ -114,10 +116,6 @@ At the heart of "GetEthTop" lies a distinctive gameplay mechanic: after each dep
 
 **Balanced Difficulty Scale**: Each level of the game offers unique challenges and rewards, facilitating fast progress of players towards the final goal.
 This game structure aims not only to entertain but also to provide fair and equitable conditions for all participants, giving everyone a chance to achieve success in the "**GetEthTop**" game world.
-
-**Separate Queues for Each Level**
-
-In the game "GetEthTop," a distinctive feature is the allocation of a separate budget for each level, leading to the formation of individual waiting queues for participants of each level. This ensures that the distribution of rewards is fair and in accordance with the budgetary constraints of each level, providing a clear structure and strategic depth to the gameplay.
 
 **Gaming and Investment: A Comparison**
 
