@@ -115,6 +115,10 @@ At the heart of "GetEthTop" lies a distinctive gameplay mechanic: after each dep
 **Balanced Difficulty Scale**: Each level of the game offers unique challenges and rewards, facilitating fast progress of players towards the final goal.
 This game structure aims not only to entertain but also to provide fair and equitable conditions for all participants, giving everyone a chance to achieve success in the "**GetEthTop**" game world.
 
+**Separate Queues for Each Level**
+
+In the game "GetEthTop," a distinctive feature is the allocation of a separate budget for each level, leading to the formation of individual waiting queues for participants of each level. This ensures that the distribution of rewards is fair and in accordance with the budgetary constraints of each level, providing a clear structure and strategic depth to the gameplay.
+
 **Gaming and Investment: A Comparison**
 
 Traditional games often involve significant expenditure without the possibility of real profit - money spent on the game is gone forever. In contrast, our project "GetEthTop" offers a unique opportunity to not only enjoy the gaming process but also potentially earn income.
