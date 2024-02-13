@@ -236,6 +236,14 @@ A key feature of 'GetEthTop' is the unique token awarded for level completion, w
 
 We aim to ensure that our token reflects the uniqueness and special qualities of the game we have developed and showcased in our repository on GitHub. Our team is dedicated to applying the same level of attention to detail, innovation, and quality in the development of our token as in the creation of our game. We believe these efforts will establish our token as a valuable asset within the blockchain ecosystem and bring significant benefits to our community. As we continue to develop and refine our project, we anticipate that it may spark considerable interest and demand, even without this game.
 
+**Welcome to the Decentralized Revolution of "GetEthTop"**
+
+We are proud to announce that our project "GetEthTop" is not only a testament to ingenuity, fairness, and transparency but also stands as a fully decentralized solution in the blockchain gaming world. Despite featuring a user interface that facilitates interaction with the game, all key processes and operations are conducted through decentralized smart contracts on the Ethereum blockchain, minimizing legal risks and granting players complete control over their assets and actions within the game.
+
+This degree of decentralization underscores our commitment to creating a game that is not only engaging and innovative but also ensures maximum security and independence for participants within the cryptocurrency ecosystem. "GetEthTop" is more than just a game. It represents a step towards a future where blockchain technology forms the foundation for creating fair and open digital worlds.
+
+Join us on this journey and become part of the blockchain gaming revolution!
+
 
 **Connect with Us:**
 
