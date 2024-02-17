@@ -189,7 +189,7 @@ Every contribution inspires us and is a vivid testament that we are moving in th
 
 **Support for the Project and Potential Token Rewards**
 
-We are grateful for any support to our project through donations. While we cannot offer guaranteed rewards, we value each contribution and plan to take into account the wallets from which transfers were made when our token is implemented (2 billions $ equivalent max available total in coins for donations rewards, this is a kind of presale, but still these are donationswith very likely bonuses for courage, nobility and trust, but there will be no other presales). Your support is important to us, and we aim to acknowledge it when the opportunity to provide rewards arises. Please note that all donations are considered voluntary contributions to support and develop the project, and a refund of funds is not envisaged.
+We are grateful for any support to our project through donations. While we cannot offer guaranteed rewards, we value each contribution and plan to take into account the wallets from which transfers were made when our token is implemented (2 billions $ equivalent max available total in coins for donations rewards, this is a kind of presale, but still these are donations with very likely bonuses for courage, nobility and trust, but there will be no other presales). Your support is important to us, and we aim to acknowledge it when the opportunity to provide rewards arises. Please note that all donations are considered voluntary contributions to support and develop the project, and a refund of funds is not envisaged.
 
 **Collaboration and Support Welcome**
 
