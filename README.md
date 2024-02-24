@@ -254,3 +254,7 @@ Together, we can take GetEthTop to new heights and create an experience that is 
 https://geteth.top
 
 getethtop@gmail.com
+
+
+If you want to say thank you without any expectations, then you can send BTC:
+bc1q25tdg7exm75mt652kvqkghanj34wtyf333tgw4
