@@ -184,12 +184,10 @@ In conclusion, GetEthTop shows promise as an engaging blockchain game that combi
 We value everyone who shares our passion and vision. If you like this project and the ideas behind it, your support can be a powerful catalyst for development and realization of new creative concepts.
 
 **Ethereum:   0x2312c1c18E0Acd64F69d149988E05A78001474E5**
+**Bitcoin:    bc1q25tdg7exm75mt652kvqkghanj34wtyf333tgw4**
 
 Every contribution inspires us and is a vivid testament that we are moving in the right direction. Thank you for your support and belief in our project!
 
-**Support for the Project and Potential Token Rewards**
-
-We are grateful for any support to our project through donations. While we cannot offer guaranteed rewards, we value each contribution and plan to take into account the wallets from which transfers were made when our token is implemented (2 billions $ equivalent max available total in coins for donations rewards, this is a kind of presale, but still these are donations with very likely bonuses for courage, nobility and trust, but there will be no other presales). Your support is important to us, and we aim to acknowledge it when the opportunity to provide rewards arises. Please note that all donations are considered voluntary contributions to support and develop the project, and a refund of funds is not envisaged.
 
 **Collaboration and Support Welcome**
 
@@ -254,7 +252,3 @@ Together, we can take GetEthTop to new heights and create an experience that is 
 https://geteth.top
 
 getethtop@gmail.com
-
-
-If you want to say thank you without any expectations, then you can send BTC:
-bc1q25tdg7exm75mt652kvqkghanj34wtyf333tgw4
